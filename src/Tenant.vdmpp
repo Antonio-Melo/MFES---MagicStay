@@ -5,6 +5,9 @@ values
 -- TODO Define values here
 instance variables
 -- TODO Define instance variables here
+	name: Types`String;
+	phoneNumber: Types`String;
+	houses: set of House := {};
 operations
 -- TODO Define operations here
 functions

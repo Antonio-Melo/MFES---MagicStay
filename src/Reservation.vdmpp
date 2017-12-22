@@ -5,6 +5,11 @@ values
 -- TODO Define values here
 instance variables
 -- TODO Define instance variables here
+	user: User;
+	house: House;
+	checkIn: Types`DateTime;
+	checkOut: Types`DateTime;
+	price: int;
 operations
 -- TODO Define operations here
 functions

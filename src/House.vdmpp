@@ -5,6 +5,8 @@ values
 -- TODO Define values here
 instance variables
 -- TODO Define instance variables here
+	tenant: Tenant;
+	reservations: set of Reservation := {};
 operations
 -- TODO Define operations here
 functions

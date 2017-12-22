@@ -1,6 +1,16 @@
 class Types
 types
 -- TODO Define types here
+	public String :: seq of char;
+	
+	public Date :: year : int
+								 month : int
+								 day : int;
+	public Time :: hour : int
+								 minute : int
+								 second : int;
+	public DateTime :: date : Date
+										 time : Time;
 values
 -- TODO Define values here
 instance variables
