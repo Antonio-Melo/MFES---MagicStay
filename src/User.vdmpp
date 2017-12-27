@@ -5,11 +5,73 @@ values
 -- TODO Define values here
 instance variables
 -- TODO Define instance variables here
+	--Default
+	firstName: Types`String;
 	fullName: Types`String;
+	email: Types`String;
+	password: Types`String;
+	country: Types`String;
 	phoneNumber: Types`String;
+	company: Types`String;
+	companyRegNum: int;
+	vat: int;
+	
+	--Others
 	reservations: set of Reservation := {};
+	
+	--Inv
+	inv companyRegNum >= 0;
+	inv vat >= 0;
+	
 operations
 -- TODO Define operations here
+	public User(fName: Types`String, name: Types`String, em: Types`String, pw: Types`String, count: Types`String, phNum: Types`String, cp: Types`String, cpRegNum: int, v: int) ret: User == (
+		firstName := fName;
+		fullName := name;
+		email := em;
+		password := pw;
+		country := count;
+		phoneNumber := phNum;
+		company := cp;
+		companyRegNum := cpRegNum;
+		vat := v;
+	)
+	post ret.firstName = fName and
+			 ret.fullName = name and
+			 ret.email = em and
+			 ret.password = pw and
+			 ret.country = count and
+			 ret.phoneNumber = phNum and
+			 ret.company = cp and
+			 ret.companyRegNum = cpRegNum and
+			 ret.vat = v;
+			 
+	public getFirstName() ret: Types`String ==
+		return firstName;
+	
+	public getFullName() ret: Types`String ==
+		return fullName;
+	
+	public getEmail() ret: Types`String ==
+		return email;
+	
+	public getPassword() ret: Types`String ==
+		return password;
+	
+	public getCountry() ret: Types`String ==
+		return country;
+	
+	public getPhoneNumber() ret: Types`String == 
+		return phoneNumber;
+		
+	public getCompany() ret: Types`String == 
+		return company;
+		
+	public getCompanyRegNum() ret: int ==
+		return companyRegNum;
+		
+	public getVat() ret: int ==
+		return vat; 
 functions
 -- TODO Define functiones here
 traces

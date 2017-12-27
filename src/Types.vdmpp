@@ -5,10 +5,14 @@ types
 	
 	public Date :: year : int
 								 month : int
-								 day : int;
+								 day : int
+				 inv date == date.year >=0 and date.month >0 and date.month <=12 and date.day >0 and date.day <=31;
 	public Time :: hour : int
 								 minute : int
-								 second : int;
+								 second : int
+				 inv time == time.hour >= 0 and time.hour < 24 and
+				 		 				 time.minute >=0 and time.minute < 60 and
+				 		 				 time.second >=0 and time.second <60;
 	public DateTime :: date : Date
 										 time : Time;
 values
