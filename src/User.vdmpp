@@ -6,15 +6,15 @@ values
 instance variables
 -- TODO Define instance variables here
 	--Default
-	firstName: Types`String;
-	fullName: Types`String;
-	email: Types`String;
-	password: Types`String;
-	country: Types`String;
-	phoneNumber: Types`String;
-	company: Types`String;
-	companyRegNum: int;
-	vat: int;
+	firstName: seq of char;
+	fullName: seq of char;
+	email: seq of char;
+	password: seq of char;
+	country: seq of char;
+	phoneNumber: seq of char;
+	company: seq of char;
+	companyRegNum: nat;
+	vat: nat;
 	
 	--Others
 	reservations: set of Reservation := {};
@@ -25,7 +25,7 @@ instance variables
 	
 operations
 -- TODO Define operations here
-	public User(fName: Types`String, name: Types`String, em: Types`String, pw: Types`String, count: Types`String, phNum: Types`String, cp: Types`String, cpRegNum: int, v: int) ret: User == (
+	public User(fName: seq of char, name: seq of char, em: seq of char, pw: seq of char, count: seq of char, phNum: seq of char, cp: seq of char, cpRegNum: int, v: int) ret: User == (
 		firstName := fName;
 		fullName := name;
 		email := em;
@@ -46,31 +46,31 @@ operations
 			 ret.companyRegNum = cpRegNum and
 			 ret.vat = v;
 			 
-	public getFirstName() ret: Types`String ==
+	public getFirstName() ret: seq of char ==
 		return firstName;
 	
-	public getFullName() ret: Types`String ==
+	public getFullName() ret: seq of char ==
 		return fullName;
 	
-	public getEmail() ret: Types`String ==
+	public getEmail() ret: seq of char ==
 		return email;
 	
-	public getPassword() ret: Types`String ==
+	public getPassword() ret: seq of char ==
 		return password;
 	
-	public getCountry() ret: Types`String ==
+	public getCountry() ret: seq of char ==
 		return country;
 	
-	public getPhoneNumber() ret: Types`String == 
+	public getPhoneNumber() ret: seq of char == 
 		return phoneNumber;
 		
-	public getCompany() ret: Types`String == 
+	public getCompany() ret: seq of char == 
 		return company;
 		
-	public getCompanyRegNum() ret: int ==
+	public getCompanyRegNum() ret: nat ==
 		return companyRegNum;
 		
-	public getVat() ret: int ==
+	public getVat() ret: nat ==
 		return vat; 
 functions
 -- TODO Define functiones here

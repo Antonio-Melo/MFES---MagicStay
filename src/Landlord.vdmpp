@@ -1,12 +1,12 @@
-class Tenant
+class Landlord
 types
 -- TODO Define types here
 values
 -- TODO Define values here
 instance variables
 -- TODO Define instance variables here
-	name: Types`String;
-	phoneNumber: Types`String;
+	name: seq of char;
+	phoneNumber: seq of char;
 	houses: set of House := {};
 operations
 -- TODO Define operations here
@@ -14,4 +14,4 @@ functions
 -- TODO Define functiones here
 traces
 -- TODO Define Combinatorial Test Traces here
-end Tenant
+end Landlord

@@ -7,6 +7,18 @@ instance variables
 -- TODO Define instance variables here
 operations
 -- TODO Define operations here
+	public createUser() ret: User == 
+		return new User("Antonio","Antonio Melo", "antonio@gmail.com", "12345", "Portugal", "911111111", "Empresa", 123, 123);
+	
+	public testCreateUser() == (
+		dcl u: User := createUser();
+		assert(u.getFirstName() = "Antonio")
+	);
+	
+	public test() == (
+		testCreateUser();
+	);
+
 functions
 -- TODO Define functiones here
 traces

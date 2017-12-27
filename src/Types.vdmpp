@@ -1,8 +1,6 @@
 class Types
 types
 -- TODO Define types here
-	public String :: seq of char;
-	
 	public Date :: year : int
 								 month : int
 								 day : int
