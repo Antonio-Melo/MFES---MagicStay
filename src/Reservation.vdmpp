@@ -6,12 +6,26 @@ values
 instance variables
 -- TODO Define instance variables here
 	user: User;
-	house: House;
+	house: Accomodation;
 	checkIn: Types`DateTime;
 	checkOut: Types`DateTime;
-	price: int;
+	price: real;
 operations
--- TODO Define operations here
+	public Reservation(u: User, h: Accomodation, cI: Types`DateTime, cO: Types`DateTime, p: real) ret: Reservation == (
+		user := u;
+		house := h;
+		checkIn := cI;
+		checkOut := cO;
+		price := p;
+	);
+
+	public getCheckIn() ret: Types`DateTime == (
+		return checkIn;
+	);
+		
+	public getCheckOut() ret: Types`DateTime == (
+		return checkOut;
+	);
 functions
 -- TODO Define functiones here
 traces

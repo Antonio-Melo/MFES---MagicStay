@@ -7,7 +7,7 @@ instance variables
 -- TODO Define instance variables here
 	name: seq of char;
 	phoneNumber: seq of char;
-	houses: set of House := {};
+	houses: set of Accomodation := {};
 operations
 -- TODO Define operations here
 functions
