@@ -18,7 +18,19 @@ values
 instance variables
 -- TODO Define instance variables here
 operations
--- TODO Define operations here
+	-- Returns -1 if d1 is after d2, 1 if d2 is after d1, or 0 if same date
+	public static compare(d1: Date, d2: Date) ret: int == (
+		if d1.year > d2.year then return -1
+		else if d1.year < d2.year then return 1
+		else
+			if d1.month > d2.month then return -1
+			else if d1.month < d2.month then return 1
+			else
+				if d1.day > d2.day then return 1
+				else if d1.day < d2.day then return -1
+				else return 0;
+	)
+	
 functions
 -- TODO Define functiones here
 traces
