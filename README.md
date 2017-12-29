@@ -2,7 +2,7 @@
 
 **TODO:**
 
-- [ ] Create User Account
+- [x] Create User Account
 - [ ] Create Landlord Account
 - [ ] Create House & add to Landloard
 - [ ] Make a Reservation & Pay for rervation
