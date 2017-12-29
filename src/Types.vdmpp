@@ -1,6 +1,7 @@
 class Types
 types
 -- TODO Define types here
+	public Gender = <Male> | <Female>;
 	public Date :: year : int
 								 month : int
 								 day : int

@@ -1,12 +1,27 @@
 class Landlord
 types
 -- TODO Define types here
+	public TypeOf = <Owner> | <RentalAgency> | <ApartHotel>;
+	public LanguageCommunication = <English> | <French> | <Spanish> | <German> | <Italian>;
 values
 -- TODO Define values here
 instance variables
 -- TODO Define instance variables here
-	name: seq of char;
+	--Default
+	firstName: seq of char;
+	fullName: seq of char;
+	genger: Types`Gender;
 	phoneNumber: seq of char;
+	email: seq of char;
+	password: seq of char;
+	language: LanguageCommunication;
+	adress: seq of char;
+	city: seq of char;
+	postalCode: seq of char;
+	country: seq of char;
+	website: seq of char;
+	type: TypeOf;
+	
 	houses: set of Accomodation := {};
 operations
 -- TODO Define operations here
