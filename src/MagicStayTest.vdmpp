@@ -8,6 +8,7 @@ instance variables
 operations
 -- TODO Define operations here
 	public static main() == (
+		IO`println("Starting MagicStay Tests");
 		new UserTest().test();
 	);
 functions
