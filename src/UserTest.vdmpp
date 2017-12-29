@@ -12,7 +12,15 @@ operations
 	
 	public testCreateUser() == (
 		dcl u: User := createUser();
-		assert(u.getFirstName() = "Antonio")
+		assert(u.getFirstName() = "Antonio");
+		assert(u.getFullName() = "Antonio Melo");
+		assert(u.getEmail() = "antonio@gmail.com");
+		assert(u.getPassword() = "12345");
+		assert(u.getCountry() = "Portugal");
+		assert(u.getPhoneNumber() = "911111111");
+		assert(u.getCompany() = "Empresa");
+		assert(u.getCompanyRegNum() = 123);
+		assert(u.getVat() = 123);
 	);
 	
 	public test() == (

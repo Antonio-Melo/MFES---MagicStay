@@ -9,7 +9,10 @@ operations
 -- TODO Define operations here
 	public static main() == (
 		IO`println("Starting MagicStay Tests");
+		
+		IO`print("Testing User...");
 		new UserTest().test();
+		IO`println("successfully!");
 	);
 functions
 -- TODO Define functiones here
