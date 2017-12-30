@@ -17,6 +17,10 @@ operations
 		IO`print("Testing LandLord...");
 		new LandlordTest().test();
 		IO`println("successfully!");
+		
+		IO`print("Testing Accomodation ...");
+		new AccomodationTest().test();
+		IO`println("successfully!");
 	);
 functions
 -- TODO Define functiones here

@@ -1,17 +1,27 @@
 class Accomodation
 types
 -- TODO Define types here
+	public TypeOf = <House> | <Apartment> | <ApartaHotel> | <Hotel>;
 values
 -- TODO Define values here
 instance variables
 -- TODO Define instance variables here
 	host: Landlord;
+	type: TypeOf;
 	reservations: set of Reservation := {};
 operations
 	-- TODO Define operations here
-	public Accomodation(user: Landlord) ret: Accomodation == (
+	public Accomodation(user: Landlord, typeOf: TypeOf) ret: Accomodation == (
 		host := user;
-	);
+		type := typeOf;
+	)
+	post ret.host = user and ret.type = typeOf;
+	
+	public getHost() ret: Landlord == 
+		return host;
+	
+	public getType() ret: TypeOf ==
+		return type;
 		
 	public addReservation(res: Reservation) ret: bool == (
 		for all reservation in set reservations do (
