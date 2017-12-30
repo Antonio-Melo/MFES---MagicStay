@@ -10,12 +10,12 @@ instance variables
 	--Default
 	firstName: seq of char;
 	fullName: seq of char;
-	genger: Types`Gender;
+	gender: Types`Gender;
 	phoneNumber: seq of char;
 	email: seq of char;
 	password: seq of char;
 	language: LanguageCommunication;
-	adress: seq of char;
+	address: seq of char;
 	city: seq of char;
 	postalCode: seq of char;
 	country: seq of char;
@@ -25,6 +25,74 @@ instance variables
 	houses: set of Accomodation := {};
 operations
 -- TODO Define operations here
+	public Landlord(fName: seq of char, name: seq of char, gend: Types`Gender, phoneNum: seq of char, em: seq of char, pw: seq of char, lang: LanguageCommunication, adr: seq of char, ct: seq of char, pc: seq of char, ctr: seq of char, web: seq of char, typ: TypeOf ) ret: Landlord == (
+		firstName := fName;
+		fullName := name;
+		gender := gend;
+		phoneNumber := phoneNum;
+		email := em;
+		password := pw;
+		language := lang;
+		address := adr;
+		city := ct;
+		postalCode := pc;
+		country := ctr;
+		website := web;
+		type := typ;
+	)
+	post ret.firstName = fName and
+			 ret.fullName = name and
+			 ret.gender = gend and
+			 ret.phoneNumber = phoneNum and
+			 ret.email = em and
+			 ret.password = pw and
+			 ret.language = lang and
+			 ret.address = adr and
+			 ret.city = ct and
+			 ret.postalCode = pc and
+			 ret.country = ctr and
+			 ret.website = web and
+			 ret.type = typ;
+			 
+	public getFirstName() ret: seq of char ==
+		return firstName;
+	
+	public getFullName() ret: seq of char ==
+		return fullName;
+		
+	public getGender() ret: Types`Gender ==
+		return gender;
+		
+	public getPhoneNumber() ret: seq of char == 
+		return phoneNumber;
+	
+	public getEmail() ret: seq of char ==
+		return email;
+	
+	public getPassword() ret: seq of char ==
+		return password;
+		
+	public getLanguage() ret: LanguageCommunication == 
+		return language;
+	
+	public getAddress() ret: seq of char ==
+		return address;
+		
+	public getCity() ret: seq of char == 
+		return city;
+		
+	public getPostalCode() ret: seq of char ==
+		return postalCode;
+	
+	public getCountry() ret: seq of char ==
+		return country;
+	
+	public getWebsite() ret: seq of char ==
+		return website;
+		
+	public getType() ret: TypeOf ==
+		return type;
+	
 functions
 -- TODO Define functiones here
 traces

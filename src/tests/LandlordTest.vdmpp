@@ -1,4 +1,4 @@
-class LandlordTest
+class LandlordTest is subclass of Test
 types
 -- TODO Define types here
 values
@@ -7,6 +7,30 @@ instance variables
 -- TODO Define instance variables here
 operations
 -- TODO Define operations here
+	public createLandlord() ret: Landlord ==
+		return new Landlord("Bruno","Bruno Santos",<Male>,"922222222", "bruno@gmail.com","1234",<English>, "Rua das Flores", "Porto","4400-458","Portugal", "www.casas.com", <Owner>); 
+	
+	public testCreateLandlord() == (
+		dcl l : Landlord := createLandlord();
+		assert(l.getFirstName() = "Bruno");
+		assert(l.getFullName() = "Bruno Santos");
+		assert(l.getGender() = <Male>);
+		assert(l.getPhoneNumber() = "922222222");
+		assert(l.getEmail() = "bruno@gmail.com");
+		assert(l.getPassword() = "1234");
+		assert(l.getLanguage() = <English>);
+		assert(l.getAddress() = "Rua das Flores");
+		assert(l.getCity() = "Porto");
+		assert(l.getPostalCode() = "4400-458");
+		assert(l.getCountry() = "Portugal");
+		assert(l.getWebsite() = "www.casas.com");
+		assert(l.getType() = <Owner>);
+	);
+	
+	public test() == (
+		testCreateLandlord();
+	);
+
 functions
 -- TODO Define functiones here
 traces
