@@ -24,7 +24,7 @@ operations
 			 ret.checkOut = cO and
 			 ret.price = p;
 	
-	public getHouse() ret: Accomodation == (
+	public getAccomodation() ret: Accomodation == (
 		return house;
 	)post ret = house;
 	
@@ -35,6 +35,10 @@ operations
 	public getCheckOut() ret: Types`DateTime == (
 		return checkOut;
 	)post ret = checkOut;
+	
+	public getPrice() ret: real == (
+		return price;
+	)post ret = price;
 functions
 -- TODO Define functiones here
 traces

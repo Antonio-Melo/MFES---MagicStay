@@ -1,4 +1,4 @@
-class ReservationTest
+class ReservationTest is subclass of Test
 types
 -- TODO Define types here
 values
@@ -8,11 +8,26 @@ instance variables
 operations
 -- TODO Define operations here
 
-	public createReservation() ret: Reservation == (
+	public createReservation(u: User, l: Landlord, a: Accomodation, cI: Types`DateTime, cO: Types`DateTime, price: real) ret: Reservation == (
+		return new Reservation(u, a, cI, cO, price) ;
+	);
+	
+	public testCreateReservation() == (
+		dcl price: real := 1500.5;
+		dcl cI: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2018,1,19), mk_Types`Time(14, 00, 00));
+		dcl cO: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2018,1,30), mk_Types`Time(11, 00, 00));
 		dcl u: User := new User("Antonio","Antonio Melo", "antonio@gmail.com", "12345", "Portugal", "911111111", "Empresa", 123, 123);
 		dcl l: Landlord := new Landlord("Bruno","Bruno Santos",<Male>,"922222222", "bruno@gmail.com","1234",<English>, "Rua das Flores", "Porto","4400-458","Portugal", "www.casas.com", <Owner>);
 		dcl a : Accomodation := new Accomodation(l,<House>);
-		return new Reservation(u, a, mk_Types`DateTime(mk_Types`Date(2018,1,19), mk_Types`Time(14, 00, 00)), mk_Types`DateTime(mk_Types`Date(2018,1,30), mk_Types`Time(11, 00, 00)), 1500.5) ;
+		dcl r : Reservation := createReservation(u,l,a,cI,cO,price);
+		assert(r.getAccomodation() = a);
+		assert(r.getCheckIn() = cI);
+		assert(r.getCheckOut() = cO);
+		assert(r.getPrice() = price);
+	);
+	
+	public test() == (
+		testCreateReservation();
 	);
 functions
 -- TODO Define functiones here
