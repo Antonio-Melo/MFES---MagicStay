@@ -27,22 +27,21 @@ operations
 	public getType() ret: TypeOf ==
 		return type;
 		
-	public addReservation(res: Reservation) ret: bool == (
+	pure public getReservations() ret: set of Reservation == (
+		return reservations;
+	);
+		
+	public addReservation(res: Reservation) == (
 		for all reservation in set reservations do (
 			if overlaps(res, reservation) then
-				return false;
+				return;
 		);
 		reservations := reservations union {res};
-		return true;
 	);
 
 	private overlaps(res1: Reservation, res2: Reservation) ret: bool == (
-		-- check in must be before other check ins, check out must be before or the same day
-		if Types`compare(res1.getCheckIn().date, res2.getCheckIn().date) = 1 and Types`compare(res1.getCheckOut().date, res2.getCheckIn().date) >= 0 then
-			return false
-		-- check in must be after other checkouts or the same day, check out must be after
-		else if Types`compare(res1.getCheckIn().date, res2.getCheckOut().date) <= 0 and Types`compare(res1.getCheckOut().date, res2.getCheckOut().date) = -1 then
-			return false
+		if Types`compare(res1.getCheckIn().date, res2.getCheckOut().date) <= 0 or Types`compare(res2.getCheckIn().date, res1.getCheckOut().date) <= 0 then (
+			return false)
 		else
 			return true;
 	);

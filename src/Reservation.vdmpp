@@ -17,6 +17,7 @@ operations
 		checkIn := cI;
 		checkOut := cO;
 		price := p;
+		house.addReservation(self);
 	)
 	post ret.user = u and
 			 ret.house = h and

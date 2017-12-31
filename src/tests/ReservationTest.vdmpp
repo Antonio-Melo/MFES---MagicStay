@@ -1,6 +1,6 @@
 class ReservationTest is subclass of Test
 types
--- TODO Define types here
+	
 values
 -- TODO Define values here
 instance variables
@@ -24,10 +24,65 @@ operations
 		assert(r.getCheckIn() = cI);
 		assert(r.getCheckOut() = cO);
 		assert(r.getPrice() = price);
+		assert(r in set a.getReservations());
+	);
+	
+	public testOverlappingReservations() == (
+		dcl price: real := 1500.5;
+		dcl u: User := new User("Antonio","Antonio Melo", "antonio@gmail.com", "12345", "Portugal", "911111111", "Empresa", 123, 123);
+		dcl l: Landlord := new Landlord("Bruno","Bruno Santos",<Male>,"922222222", "bruno@gmail.com","1234",<English>, "Rua das Flores", "Porto","4400-458","Portugal", "www.casas.com", <Owner>);
+		dcl a : Accomodation := new Accomodation(l,<House>);
+		
+		dcl cI: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2018,1,19), mk_Types`Time(14, 00, 00));
+		dcl cO: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2018,1,30), mk_Types`Time(11, 00, 00));
+		dcl r : Reservation := createReservation(u,l,a,cI,cO,price);
+		
+		dcl cI2: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2018,1,19), mk_Types`Time(14, 00, 00));
+		dcl cO2: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2018,1,30), mk_Types`Time(11, 00, 00));
+		dcl r2 : Reservation := createReservation(u,l,a,cI2,cO2,price);
+		
+		dcl cI3: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2018,1,8), mk_Types`Time(14, 00, 00));
+		dcl cO3: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2018,1,19), mk_Types`Time(11, 00, 00));
+		dcl r3 : Reservation := createReservation(u,l,a,cI3,cO3,price);
+		
+		dcl cI4: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2017,10,6), mk_Types`Time(14, 00, 00));
+		dcl cO4: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2017,11,5), mk_Types`Time(11, 00, 00));
+		dcl r4 : Reservation := createReservation(u,l,a,cI4,cO4,price);
+		
+		dcl cI5: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2017,12,26), mk_Types`Time(14, 00, 00));
+		dcl cO5: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2018,1,4), mk_Types`Time(11, 00, 00));
+		dcl r5 : Reservation := createReservation(u,l,a,cI5,cO5,price);
+		
+		dcl cI6: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2018,3,4), mk_Types`Time(14, 00, 00));
+		dcl cO6: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2018,3,9), mk_Types`Time(11, 00, 00));
+		dcl r6 : Reservation := createReservation(u,l,a,cI6,cO6,price);
+		
+		dcl cI7: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2018,1,17), mk_Types`Time(14, 00, 00));
+		dcl cO7: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2018,1,20), mk_Types`Time(11, 00, 00));
+		dcl r7 : Reservation := createReservation(u,l,a,cI7,cO7,price);
+		
+		dcl cI8: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2017,9,17), mk_Types`Time(14, 00, 00));
+		dcl cO8: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2018,10,8), mk_Types`Time(11, 00, 00));
+		dcl r8 : Reservation := createReservation(u,l,a,cI8,cO8,price);
+		
+		dcl cI9: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2017,1,1), mk_Types`Time(14, 00, 00));
+		dcl cO9: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2018,1,1), mk_Types`Time(11, 00, 00));
+		dcl r9 : Reservation := createReservation(u,l,a,cI9,cO9,price);
+		
+		assert(r in set a.getReservations());
+		assert(r2 not in set a.getReservations());
+		assert(r3 in set a.getReservations());
+		assert(r4 in set a.getReservations());
+		assert(r5 in set a.getReservations());
+		assert(r6 in set a.getReservations());
+		assert(r7 not in set a.getReservations());
+		assert(r8 not in set a.getReservations());
+		assert(r9 not in set a.getReservations());
 	);
 	
 	public test() == (
 		testCreateReservation();
+		testOverlappingReservations();
 	);
 functions
 -- TODO Define functiones here
