@@ -93,6 +93,12 @@ operations
 		
 	public getType() ret: TypeOf ==
 		return type;
+		
+	pure public getHouses() ret: set of Accomodation ==
+		return houses;
+	
+	public addHouse(house: Accomodation) ==
+		houses := houses union {house};
 	
 functions
 -- TODO Define functiones here

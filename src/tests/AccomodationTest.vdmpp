@@ -15,6 +15,7 @@ operations
 		dcl a: Accomodation := createAccomodation(l);
 		assert(a.getHost() = l);
 		assert(a.getType() = <House>);
+		assert(a in set l.getHouses()); 
 	);
 	
 	public test() == (

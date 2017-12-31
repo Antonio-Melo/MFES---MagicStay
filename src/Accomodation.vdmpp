@@ -14,8 +14,12 @@ operations
 	public Accomodation(user: Landlord, typeOf: TypeOf) ret: Accomodation == (
 		host := user;
 		type := typeOf;
+		host.addHouse(self);
 	)
-	post ret.host = user and ret.type = typeOf;
+	post ret.host = user and
+			 ret.type = typeOf and
+			 ret in set ret.host.getHouses(); 
+			 
 	
 	public getHost() ret: Landlord == 
 		return host;
