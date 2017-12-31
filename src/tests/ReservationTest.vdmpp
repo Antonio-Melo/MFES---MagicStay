@@ -1,0 +1,21 @@
+class ReservationTest
+types
+-- TODO Define types here
+values
+-- TODO Define values here
+instance variables
+-- TODO Define instance variables here
+operations
+-- TODO Define operations here
+
+	public createReservation() ret: Reservation == (
+		dcl u: User := new User("Antonio","Antonio Melo", "antonio@gmail.com", "12345", "Portugal", "911111111", "Empresa", 123, 123);
+		dcl l: Landlord := new Landlord("Bruno","Bruno Santos",<Male>,"922222222", "bruno@gmail.com","1234",<English>, "Rua das Flores", "Porto","4400-458","Portugal", "www.casas.com", <Owner>);
+		dcl a : Accomodation := new Accomodation(l,<House>);
+		return new Reservation(u, a, mk_Types`DateTime(mk_Types`Date(2018,1,19), mk_Types`Time(14, 00, 00)), mk_Types`DateTime(mk_Types`Date(2018,1,30), mk_Types`Time(11, 00, 00)), 1500.5) ;
+	);
+functions
+-- TODO Define functiones here
+traces
+-- TODO Define Combinatorial Test Traces here
+end ReservationTest

@@ -54,6 +54,7 @@ operations
 			 ret.website = web and
 			 ret.type = typ;
 			 
+			 
 	public getFirstName() ret: seq of char ==
 		return firstName;
 	

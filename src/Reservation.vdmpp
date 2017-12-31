@@ -17,15 +17,24 @@ operations
 		checkIn := cI;
 		checkOut := cO;
 		price := p;
-	);
-
+	)
+	post ret.user = u and
+			 ret.house = h and
+			 ret.checkIn = cI and
+			 ret.checkOut = cO and
+			 ret.price = p;
+	
+	public getHouse() ret: Accomodation == (
+		return house;
+	)post ret = house;
+	
 	public getCheckIn() ret: Types`DateTime == (
 		return checkIn;
-	);
+	)post ret = checkIn;
 		
 	public getCheckOut() ret: Types`DateTime == (
 		return checkOut;
-	);
+	)post ret = checkOut;
 functions
 -- TODO Define functiones here
 traces
