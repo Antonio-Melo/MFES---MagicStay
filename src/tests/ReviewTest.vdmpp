@@ -1,0 +1,30 @@
+class ReviewTest is subclass of Test
+types
+-- TODO Define types here
+values
+-- TODO Define values here
+instance variables
+-- TODO Define instance variables here
+operations
+-- TODO Define operations here
+	public createReview(user: User, accomodation: Accomodation, review: seq of char) ret: Review ==
+		return new Review(user,accomodation,review);
+		
+	public testCreateReview() == (
+		dcl user: User := new User("Antonio","Antonio Melo", "antonio@gmail.com", "12345", "Portugal", "911111111", "Empresa", 123, 123);
+		dcl landlord: Landlord := new Landlord("Bruno","Bruno Santos",<Male>,"922222222", "bruno@gmail.com","1234",<English>, "Rua das Flores", "Porto","4400-458","Portugal", "www.casas.com", <Owner>);
+		dcl accomodation : Accomodation := new Accomodation(landlord,<House>);
+		dcl review: Review := new Review(user,accomodation,"Very good!");
+		assert(review.getReview() = "Very good!");
+		assert(review.getUser() = user);
+		assert(review.getAccomodation() = accomodation);
+	);
+	
+	public test() == (
+		testCreateReview();
+	);
+functions
+-- TODO Define functiones here
+traces
+-- TODO Define Combinatorial Test Traces here
+end ReviewTest

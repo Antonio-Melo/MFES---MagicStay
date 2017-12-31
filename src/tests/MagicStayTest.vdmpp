@@ -14,7 +14,7 @@ operations
 		new UserTest().test();
 		IO`println("successfully!");
 		
-		IO`print("Testing LandLord...");
+		IO`print("Testing Landlord...");
 		new LandlordTest().test();
 		IO`println("successfully!");
 		
@@ -24,7 +24,11 @@ operations
 		
 		IO`print("Testing Reservation ...");
 		new ReservationTest().test();
-		IO`println("successfully!");		
+		IO`println("successfully!");
+		
+		IO`print("Testing Review ...");
+		new ReviewTest().test();
+		IO`println("successfully!");	
 	);
 functions
 -- TODO Define functiones here
