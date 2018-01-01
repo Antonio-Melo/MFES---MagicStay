@@ -8,68 +8,74 @@ instance variables
 operations
 -- TODO Define operations here
 
-	public createReservation(u: User, l: Landlord, a: Accomodation, cI: Types`DateTime, cO: Types`DateTime, price: real) ret: Reservation == (
-		return new Reservation(u, a, cI, cO, price) ;
+	public createReservation(u: User, l: Landlord, a: Accomodation, cI: Types`DateTime, cO: Types`DateTime) ret: Reservation == (
+		return new Reservation(u, a, cI, cO) ;
 	);
 	
 	public testCreateReservation() == (
-		dcl price: real := 1500.5;
+		dcl price: real := 120;
+		dcl userWallet: real := 50000;
+		dcl hostWallet: real := 0;
 		dcl cI: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2018,1,19), mk_Types`Time(14, 00, 00));
 		dcl cO: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2018,1,30), mk_Types`Time(11, 00, 00));
-		dcl u: User := new User("Antonio","Antonio Melo", "antonio@gmail.com", "12345", "Portugal", "911111111", "Empresa", 123, 123);
-		dcl l: Landlord := new Landlord("Bruno","Bruno Santos",<Male>,"922222222", "bruno@gmail.com","1234",<English>, "Rua das Flores", "Porto","4400-458","Portugal", "www.casas.com", <Owner>);
-		dcl a : Accomodation := new Accomodation(l,<House>);
-		dcl r : Reservation := createReservation(u,l,a,cI,cO,price);
+		dcl u: User := new User("Antonio","Antonio Melo", "antonio@gmail.com", "12345", "Portugal", "911111111", "Empresa", 123, 123, userWallet);
+		dcl l: Landlord := new Landlord("Bruno","Bruno Santos",<Male>,"922222222", "bruno@gmail.com","1234",<English>, "Rua das Flores", "Porto","4400-458","Portugal", "www.casas.com", <Owner>, hostWallet);
+		dcl a : Accomodation := new Accomodation(l,<House>, price);
+		dcl r : Reservation := createReservation(u,l,a,cI,cO);
 		assert(r.getAccomodation() = a);
 		assert(r.getCheckIn() = cI);
 		assert(r.getCheckOut() = cO);
 		assert(r.getPrice() = price);
 		assert(r in set a.getReservations());
+		assert(r.getUser().getWallet() = userWallet-price);
+		assert(r.getAccomodation().getHost().getWallet() = hostWallet+price);
 	);
 	
 	public testOverlappingReservations() == (
-		dcl price: real := 1500.5;
-		dcl u: User := new User("Antonio","Antonio Melo", "antonio@gmail.com", "12345", "Portugal", "911111111", "Empresa", 123, 123);
-		dcl l: Landlord := new Landlord("Bruno","Bruno Santos",<Male>,"922222222", "bruno@gmail.com","1234",<English>, "Rua das Flores", "Porto","4400-458","Portugal", "www.casas.com", <Owner>);
-		dcl a : Accomodation := new Accomodation(l,<House>);
+		dcl price: real := 120;
+		dcl userWallet: real := 50000;
+		dcl hostWallet: real := 0;
+		dcl u: User := new User("Antonio","Antonio Melo", "antonio@gmail.com", "12345", "Portugal", "911111111", "Empresa", 123, 123, userWallet);
+		dcl l: Landlord := new Landlord("Bruno","Bruno Santos",<Male>,"922222222", "bruno@gmail.com","1234",<English>, "Rua das Flores", "Porto","4400-458","Portugal", "www.casas.com", <Owner>, hostWallet);
+		dcl a : Accomodation := new Accomodation(l,<House>, price);
 		
 		dcl cI: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2018,1,19), mk_Types`Time(14, 00, 00));
 		dcl cO: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2018,1,30), mk_Types`Time(11, 00, 00));
-		dcl r : Reservation := createReservation(u,l,a,cI,cO,price);
+		dcl r : Reservation := createReservation(u,l,a,cI,cO);
 		
 		dcl cI2: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2018,1,19), mk_Types`Time(14, 00, 00));
 		dcl cO2: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2018,1,30), mk_Types`Time(11, 00, 00));
-		dcl r2 : Reservation := createReservation(u,l,a,cI2,cO2,price);
+		dcl r2 : Reservation := createReservation(u,l,a,cI2,cO2);
 		
 		dcl cI3: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2018,1,8), mk_Types`Time(14, 00, 00));
 		dcl cO3: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2018,1,19), mk_Types`Time(11, 00, 00));
-		dcl r3 : Reservation := createReservation(u,l,a,cI3,cO3,price);
+		dcl r3 : Reservation := createReservation(u,l,a,cI3,cO3);
 		
 		dcl cI4: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2017,10,6), mk_Types`Time(14, 00, 00));
 		dcl cO4: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2017,11,5), mk_Types`Time(11, 00, 00));
-		dcl r4 : Reservation := createReservation(u,l,a,cI4,cO4,price);
+		dcl r4 : Reservation := createReservation(u,l,a,cI4,cO4);
 		
 		dcl cI5: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2017,12,26), mk_Types`Time(14, 00, 00));
 		dcl cO5: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2018,1,4), mk_Types`Time(11, 00, 00));
-		dcl r5 : Reservation := createReservation(u,l,a,cI5,cO5,price);
+		dcl r5 : Reservation := createReservation(u,l,a,cI5,cO5);
 		
 		dcl cI6: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2018,3,4), mk_Types`Time(14, 00, 00));
 		dcl cO6: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2018,3,9), mk_Types`Time(11, 00, 00));
-		dcl r6 : Reservation := createReservation(u,l,a,cI6,cO6,price);
+		dcl r6 : Reservation := createReservation(u,l,a,cI6,cO6);
 		
 		dcl cI7: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2018,1,17), mk_Types`Time(14, 00, 00));
 		dcl cO7: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2018,1,20), mk_Types`Time(11, 00, 00));
-		dcl r7 : Reservation := createReservation(u,l,a,cI7,cO7,price);
+		dcl r7 : Reservation := createReservation(u,l,a,cI7,cO7);
 		
 		dcl cI8: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2017,9,17), mk_Types`Time(14, 00, 00));
 		dcl cO8: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2018,10,8), mk_Types`Time(11, 00, 00));
-		dcl r8 : Reservation := createReservation(u,l,a,cI8,cO8,price);
+		dcl r8 : Reservation := createReservation(u,l,a,cI8,cO8);
 		
 		dcl cI9: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2017,1,1), mk_Types`Time(14, 00, 00));
 		dcl cO9: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2018,1,1), mk_Types`Time(11, 00, 00));
-		dcl r9 : Reservation := createReservation(u,l,a,cI9,cO9,price);
+		dcl r9 : Reservation := createReservation(u,l,a,cI9,cO9);
 		
-		assert(r in set a.getReservations());
+		assert(r in set a.getReservations());		
 		assert(r2 not in set a.getReservations());
 		assert(r3 in set a.getReservations());
 		assert(r4 in set a.getReservations());
@@ -78,6 +84,9 @@ operations
 		assert(r7 not in set a.getReservations());
 		assert(r8 not in set a.getReservations());
 		assert(r9 not in set a.getReservations());
+		
+		assert(r.getUser().getWallet() = userWallet-price*5);
+		assert(r.getAccomodation().getHost().getWallet() = hostWallet+price*5);
 	);
 	
 	public test() == (

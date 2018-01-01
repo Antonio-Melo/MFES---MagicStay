@@ -8,16 +8,19 @@ instance variables
 -- TODO Define instance variables here
 	host: Landlord;
 	type: TypeOf;
+	price: real;
 	reservations: set of Reservation := {};
 operations
 	-- TODO Define operations here
-	public Accomodation(user: Landlord, typeOf: TypeOf) ret: Accomodation == (
+	public Accomodation(user: Landlord, typeOf: TypeOf, p: real) ret: Accomodation == (
 		host := user;
 		type := typeOf;
+		price := p;
 		host.addHouse(self);
 	)
 	post ret.host = user and
 			 ret.type = typeOf and
+			 ret.price = p and
 			 ret in set ret.host.getHouses(); 
 			 
 	
@@ -36,8 +39,12 @@ operations
 			if overlaps(res, reservation) then
 				return;
 		);
+		res.setPrice(price);
+		res.getUser().transaction(-price);
+		host.transaction(price);
 		reservations := reservations union {res};
-	);
+	)
+	pre res.getUser().getWallet() > price;
 
 	private overlaps(res1: Reservation, res2: Reservation) ret: bool == (
 		if Types`compare(res1.getCheckIn().date, res2.getCheckOut().date) <= 0 or Types`compare(res2.getCheckIn().date, res1.getCheckOut().date) <= 0 then (

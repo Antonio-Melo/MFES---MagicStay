@@ -8,7 +8,7 @@ instance variables
 operations
 -- TODO Define operations here
 	public createLandlord() ret: Landlord ==
-		return new Landlord("Bruno","Bruno Santos",<Male>,"922222222", "bruno@gmail.com","1234",<English>, "Rua das Flores", "Porto","4400-458","Portugal", "www.casas.com", <Owner>); 
+		return new Landlord("Bruno","Bruno Santos",<Male>,"922222222", "bruno@gmail.com","1234",<English>, "Rua das Flores", "Porto","4400-458","Portugal", "www.casas.com", <Owner>, 0); 
 	
 	public testCreateLandlord() == (
 		dcl l : Landlord := createLandlord();

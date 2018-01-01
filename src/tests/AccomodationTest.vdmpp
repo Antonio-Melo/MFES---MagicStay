@@ -8,10 +8,10 @@ instance variables
 operations
 -- TODO Define operations here
 	public createAccomodation(landlord: Landlord) ret: Accomodation == 
-		return new Accomodation(landlord,<House>);
+		return new Accomodation(landlord,<House>, 120);
 	
 	public testCreateAccomodation() == (
-		dcl l: Landlord := new Landlord("Bruno","Bruno Santos",<Male>,"922222222", "bruno@gmail.com","1234",<English>, "Rua das Flores", "Porto","4400-458","Portugal", "www.casas.com", <Owner>);
+		dcl l: Landlord := new Landlord("Bruno","Bruno Santos",<Male>,"922222222", "bruno@gmail.com","1234",<English>, "Rua das Flores", "Porto","4400-458","Portugal", "www.casas.com", <Owner>, 0);
 		dcl a: Accomodation := createAccomodation(l);
 		assert(a.getHost() = l);
 		assert(a.getType() = <House>);

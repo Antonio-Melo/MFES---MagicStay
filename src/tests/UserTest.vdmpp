@@ -8,7 +8,7 @@ instance variables
 operations
 -- TODO Define operations here
 	public createUser() ret: User == 
-		return new User("Antonio","Antonio Melo", "antonio@gmail.com", "12345", "Portugal", "911111111", "Empresa", 123, 123);
+		return new User("Antonio","Antonio Melo", "antonio@gmail.com", "12345", "Portugal", "911111111", "Empresa", 123, 123, 50000);
 	
 	public testCreateUser() == (
 		dcl u: User := createUser();

@@ -15,6 +15,7 @@ instance variables
 	company: seq of char;
 	companyRegNum: nat;
 	vat: nat;
+	wallet: real;
 	
 	--Others
 	reservations: set of Reservation := {};
@@ -25,7 +26,7 @@ instance variables
 	
 operations
 -- TODO Define operations here
-	public User(fName: seq of char, name: seq of char, em: seq of char, pw: seq of char, count: seq of char, phNum: seq of char, cp: seq of char, cpRegNum: int, v: int) ret: User == (
+	public User(fName: seq of char, name: seq of char, em: seq of char, pw: seq of char, count: seq of char, phNum: seq of char, cp: seq of char, cpRegNum: int, v: int, initWallet: real) ret: User == (
 		firstName := fName;
 		fullName := name;
 		email := em;
@@ -35,6 +36,7 @@ operations
 		company := cp;
 		companyRegNum := cpRegNum;
 		vat := v;
+		wallet := initWallet;
 	)
 	post ret.firstName = fName and
 			 ret.fullName = name and
@@ -44,7 +46,8 @@ operations
 			 ret.phoneNumber = phNum and
 			 ret.company = cp and
 			 ret.companyRegNum = cpRegNum and
-			 ret.vat = v;
+			 ret.vat = v and
+			 ret.wallet = initWallet;
 			 
 	public getFirstName() ret: seq of char ==
 		return firstName;
@@ -72,6 +75,14 @@ operations
 		
 	public getVat() ret: nat ==
 		return vat; 
+		
+	pure public getWallet() ret: real == (
+		return wallet; 
+	);
+		
+	public transaction(value: real) ==
+		wallet := wallet + value;
+		
 functions
 -- TODO Define functiones here
 traces

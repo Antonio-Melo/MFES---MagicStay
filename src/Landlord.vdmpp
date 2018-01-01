@@ -21,11 +21,12 @@ instance variables
 	country: seq of char;
 	website: seq of char;
 	type: TypeOf;
+	wallet: real;
 	
 	houses: set of Accomodation := {};
 operations
 -- TODO Define operations here
-	public Landlord(fName: seq of char, name: seq of char, gend: Types`Gender, phoneNum: seq of char, em: seq of char, pw: seq of char, lang: LanguageCommunication, adr: seq of char, ct: seq of char, pc: seq of char, ctr: seq of char, web: seq of char, typ: TypeOf ) ret: Landlord == (
+	public Landlord(fName: seq of char, name: seq of char, gend: Types`Gender, phoneNum: seq of char, em: seq of char, pw: seq of char, lang: LanguageCommunication, adr: seq of char, ct: seq of char, pc: seq of char, ctr: seq of char, web: seq of char, typ: TypeOf, initWallet: real) ret: Landlord == (
 		firstName := fName;
 		fullName := name;
 		gender := gend;
@@ -39,6 +40,7 @@ operations
 		country := ctr;
 		website := web;
 		type := typ;
+		wallet := initWallet;
 	)
 	post ret.firstName = fName and
 			 ret.fullName = name and
@@ -52,7 +54,8 @@ operations
 			 ret.postalCode = pc and
 			 ret.country = ctr and
 			 ret.website = web and
-			 ret.type = typ;
+			 ret.type = typ and
+			 ret.wallet = initWallet;
 			 
 			 
 	public getFirstName() ret: seq of char ==
@@ -96,6 +99,12 @@ operations
 		
 	pure public getHouses() ret: set of Accomodation ==
 		return houses;
+		
+	public getWallet() ret: real ==
+		return wallet;
+		
+	public transaction(value: real) ==
+		wallet := wallet + value;
 	
 	public addHouse(house: Accomodation) ==
 		houses := houses union {house};
