@@ -18,7 +18,7 @@ instance variables
 	wallet: real;
 	
 	--Others
-	reservations: set of Reservation := {};
+	favorites: set of Accomodation := {};
 	
 	--Inv
 	inv companyRegNum >= 0;
@@ -80,8 +80,22 @@ operations
 		return wallet; 
 	);
 		
+	public getFavorites() ret: set of Accomodation == (
+		return favorites;
+	);
+		
 	public transaction(value: real) ==
 		wallet := wallet + value;
+		
+	public addFavorite(h: Accomodation) == (
+		favorites := favorites union {h}
+	)
+	pre h not in set favorites;
+	
+	public removeFavorite(h: Accomodation) == (
+		favorites := favorites \ {h}
+	)
+	pre h in set favorites;
 		
 functions
 -- TODO Define functiones here
