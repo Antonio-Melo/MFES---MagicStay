@@ -44,7 +44,7 @@ operations
 	public getNumBedrooms() ret: nat ==
 		return numBedrooms;
 		
-	public getNumStart() ret: nat ==
+	public getNumStars() ret: nat ==
 		return numStars;
 		
 	public getNumBeds() ret: nat ==
@@ -58,6 +58,9 @@ operations
 	
 	public getType() ret: TypeOf ==
 		return type;
+	
+	public getPrice() ret: real ==
+		return price;
 		
 	pure public getReservations() ret: set of Reservation == (
 		return reservations;

@@ -50,12 +50,22 @@ operations
 				 ret.highRangePrice = highPrice and
 				 ret.results = {};
 				 
-	--public searchResults(accomodations: set of Accomodation) ret: set of Accomodation== (
-		--for all a in set accomodations do (
-			--if a.getArea() = area then
-				--return;
-		--);
-	--);
+	public searchResults(accomodations: set of Accomodation) ret: set of Accomodation== (
+		results := {};
+		for all a in set accomodations do (
+			if a.getArea() = area and
+			 	 a.getNumBedrooms() = numBedrooms and
+			 	 a.getType() = typeOfAccomodation and
+			 	 a.getNumStars() = numOfStars and
+			 	 a.getNumBeds() = numOfBeds and
+			 	 a.getNumOfBathrooms() = numOfBathrooms and
+			 	 a.getPrice() >= lowRangePrice and
+			 	 a.getPrice() <= highRangePrice then (
+			 	 	results := results union {a};
+			 	 );
+		);
+		return results;
+	);
 				 
 	public getArea() ret: seq of char ==
 		return area

@@ -13,6 +13,11 @@ operations
 	public testCreateAccomodation() == (
 		dcl l: Landlord := new Landlord("Bruno","Bruno Santos",<Male>,"922222222", "bruno@gmail.com","1234",<English>, "Rua das Flores", "Porto","4400-458","Portugal", "www.casas.com", <Owner>, 0);
 		dcl a: Accomodation := createAccomodation(l);
+		assert(a.getArea() = "Porto");
+		assert(a.getNumBedrooms() = 2);
+		assert(a.getNumStars() = 4);
+		assert(a.getNumBeds() = 2);
+		assert(a.getNumOfBathrooms() = 1);
 		assert(a.getHost() = l);
 		assert(a.getType() = <House>);
 		assert(a in set l.getHouses()); 
