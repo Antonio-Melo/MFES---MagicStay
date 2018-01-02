@@ -6,25 +6,18 @@ values
 instance variables
 -- TODO Define instance variables here
 	user: User;
-	accomodation: Accomodation;
 	review: seq of char;
 operations
 -- TODO Define operations here
-	public Review(u: User, a: Accomodation, r: seq of char) ret: Review== (
+	public Review(u: User, r: seq of char) ret: Review== (
 		user := u;
-		accomodation := a;
 		review := r;
 	)post ret.user = u and
-	 			ret.accomodation = a and
 	 			ret.review = r;
 	 			
 	 public getUser() ret: User == (
 	 	return user;
 	 )post ret = user;
-	 
-	 public getAccomodation() ret: Accomodation == (
-	 	return accomodation;
-	 )post ret = accomodation;
 	 
 	 public getReview() ret: seq of char == (
 	 	return review;

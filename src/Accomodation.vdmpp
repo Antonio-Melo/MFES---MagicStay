@@ -14,7 +14,9 @@ instance variables
 	host: Landlord;
 	type: TypeOf;
 	price: real;
+	
 	reservations: set of Reservation := {};
+	reviews: set of Review := {};
 operations
 	-- TODO Define operations here
 	public Accomodation(a: seq of char, nBedrooms: nat, nStars: nat, nBeds: nat, nBathrooms: nat, user: Landlord, typeOf: TypeOf, p: real) ret: Accomodation == (
@@ -65,7 +67,18 @@ operations
 	pure public getReservations() ret: set of Reservation == (
 		return reservations;
 	);
-		
+	
+	public addReview(rev: Review) == (
+		reviews := reviews union {rev};
+	) pre rev not in set reviews;
+	
+	public removeReview(rev: Review) == (
+		reviews := reviews \ {rev};
+	)pre rev in set reviews;
+	
+	public getReviews() ret: set of Review== 
+		return reviews;
+	
 	public addReservation(res: Reservation) == (
 		for all reservation in set reservations do (
 			if overlaps(res, reservation) then
