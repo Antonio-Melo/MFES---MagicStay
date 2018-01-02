@@ -1,0 +1,34 @@
+class SearchTest is subclass of Test
+types
+-- TODO Define types here
+values
+-- TODO Define values here
+instance variables
+-- TODO Define instance variables here
+operations
+-- TODO Define operations here
+	public createSearch(a: seq of char, cIn: Types`Date, cOut: Types`Date, nBedrooms: nat, typeOfAcco: Accomodation`TypeOf, nOfStars: nat,nOfBeds: nat,nOfBathrooms: nat,lowPrice: real,highPrice: real) ret: Search ==
+		 return new Search(a, cIn, cOut, nBedrooms, typeOfAcco, nOfStars,nOfBeds,nOfBathrooms,lowPrice,highPrice);
+		 
+	public testCreateSearch() == (
+		dcl s : Search := createSearch("Porto",mk_Types`Date(2018,1,19),mk_Types`Date(2018,1,30),1,<House>,4,2,1,500,1000);
+		assert(s.getArea() = "Porto");
+		assert(s.getCheckIn() = mk_Types`Date(2018,1,19));
+		assert(s.getCheckOut() = mk_Types`Date(2018,1,30));
+		assert(s.getNumBedrooms() = 1);
+		assert(s.getTypeOfAccomodation() = <House>);
+		assert(s.getNumOfStars() = 4);
+		assert(s.getNumOfBeds() = 2);
+		assert(s.getNumOfBathrooms() = 1);
+		assert(s.getLowRangePrice() = 500);
+		assert(s.getHighRangePrice() = 1000);
+		);
+		
+		public test() == (
+			testCreateSearch();
+		);
+functions
+-- TODO Define functiones here
+traces
+-- TODO Define Combinatorial Test Traces here
+end SearchTest

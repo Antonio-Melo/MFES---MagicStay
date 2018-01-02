@@ -1,0 +1,85 @@
+class Search
+types
+-- TODO Define types here
+values
+-- TODO Define values here
+instance variables
+-- TODO Define instance variables here
+	area: seq of char;
+	checkIn: Types`Date;
+	checkOut: Types`Date;
+	numBedrooms: nat;
+	typeOfAccomodation: Accomodation`TypeOf;
+	numOfStars: nat;
+	numOfBeds: nat;
+	numOfBathrooms: nat;
+	lowRangePrice: real;
+	highRangePrice: real;
+	
+	results: set of Accomodation := {};
+	
+	--Inv
+	inv numOfStars > 0 and numOfStars < 6;
+	inv numOfStars > 0;
+	inv numOfBathrooms > 0 and numOfBathrooms <6;
+	inv lowRangePrice > 0;
+	inv highRangePrice > 0 and highRangePrice > lowRangePrice;
+	
+operations
+-- TODO Define operations here
+	public Search(a: seq of char, cIn: Types`Date, cOut: Types`Date, nBedrooms: nat, typeOfAcco: Accomodation`TypeOf, nOfStars: nat,nOfBeds: nat,nOfBathrooms: nat,lowPrice: real,highPrice: real) ret: Search == (
+		area := a;
+		checkIn := cIn;
+		checkOut := cOut;
+		numBedrooms:= nBedrooms;
+		typeOfAccomodation := typeOfAcco;
+		numOfStars := nOfStars;
+		numOfBeds := nOfBeds;
+		numOfBathrooms := nOfBathrooms;
+		lowRangePrice := lowPrice;
+		highRangePrice := highPrice;
+	) post ret.area = area and
+				 ret.checkIn = cIn and
+				 ret.checkOut = cOut and
+				 ret.numBedrooms = nBedrooms and
+				 ret.typeOfAccomodation = typeOfAcco and
+				 ret.numOfStars = nOfStars and
+				 ret.numOfBeds = nOfBeds and
+				 ret.numOfBathrooms = nOfBathrooms and
+				 ret.lowRangePrice = lowPrice and
+				 ret.highRangePrice = highPrice and
+				 ret.results = {};
+				 
+	--public searchResults(accomodations: set of Accomodation) ret: set of Accomodation== (
+		--for all a in set accomodations do (
+			--if a.getArea() = area then
+				--return;
+		--);
+	--);
+				 
+	public getArea() ret: seq of char ==
+		return area
+		post ret = area;
+	public getCheckIn() ret: Types`Date == 
+		return checkIn;
+	public getCheckOut() ret: Types`Date == 
+		return checkOut;
+	public getNumBedrooms() ret: nat == 
+		return numBedrooms;
+	public getTypeOfAccomodation() ret: Accomodation`TypeOf == 
+		return typeOfAccomodation;
+	public getNumOfStars() ret: nat ==
+		return numOfStars;
+	public getNumOfBeds() ret: nat ==
+		return numOfBeds;
+	public getNumOfBathrooms() ret: nat ==
+		return numOfBathrooms;
+	public getLowRangePrice() ret:real ==
+		return lowRangePrice;
+	public getHighRangePrice() ret: real ==
+		return highRangePrice;
+functions
+-- TODO Define functiones here
+traces
+-- TODO Define Combinatorial Test Traces here
+end Search

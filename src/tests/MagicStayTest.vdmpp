@@ -18,17 +18,21 @@ operations
 		new LandlordTest().test();
 		IO`println("successfully!");
 		
-		IO`print("Testing Accomodation ...");
+		IO`print("Testing Accomodation...");
 		new AccomodationTest().test();
 		IO`println("successfully!");
 		
-		IO`print("Testing Reservation ...");
+		IO`print("Testing Reservation...");
 		new ReservationTest().test();
 		IO`println("successfully!");
 		
-		IO`print("Testing Review ...");
+		IO`print("Testing Review...");
 		new ReviewTest().test();
-		IO`println("successfully!");	
+		IO`println("successfully!");
+		
+		IO`print("Testing Search...");
+		new SearchTest().test();	
+		IO`println("successfully!");
 	);
 functions
 -- TODO Define functiones here
