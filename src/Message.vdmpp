@@ -1,0 +1,24 @@
+class Message
+types
+	public Person = User | Landlord;
+values
+-- TODO Define values here
+instance variables
+	sender: Person;
+	receiver: Person;
+	content: seq of char;
+	inReplyTo: [Message];
+operations
+	public Message(s: Person, r: Person, c: seq of char, m: [Message]) ret: Message == (
+		sender := s;
+		receiver := r;
+		content := c;
+		inReplyTo := m;
+		receiver.addMessage(self);
+	);
+	
+functions
+-- TODO Define functiones here
+traces
+-- TODO Define Combinatorial Test Traces here
+end Message

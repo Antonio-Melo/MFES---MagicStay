@@ -23,6 +23,8 @@ instance variables
 	type: TypeOf;
 	wallet: real;
 	
+	inbox: set of Message := {};
+	
 	houses: set of Accomodation := {};
 operations
 -- TODO Define operations here
@@ -102,12 +104,18 @@ operations
 		
 	public getWallet() ret: real ==
 		return wallet;
-		
+	
+	public getMessages() ret: set of Message ==
+		return inbox;
+	
 	public transaction(value: real) ==
 		wallet := wallet + value;
 	
 	public addHouse(house: Accomodation) ==
 		houses := houses union {house};
+		
+	public addMessage(message: Message) ==
+		inbox := inbox union {message};
 	
 functions
 -- TODO Define functiones here

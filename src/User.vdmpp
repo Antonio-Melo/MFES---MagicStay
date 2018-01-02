@@ -19,6 +19,7 @@ instance variables
 	
 	--Others
 	favorites: set of Accomodation := {};
+	inbox: set of Message := {};
 	
 	--Inv
 	inv companyRegNum >= 0;
@@ -79,7 +80,10 @@ operations
 	pure public getWallet() ret: real == (
 		return wallet; 
 	);
-		
+	
+	public getMessages() ret: set of Message ==
+		return inbox;	
+	
 	public getFavorites() ret: set of Accomodation == (
 		return favorites;
 	);
@@ -96,7 +100,10 @@ operations
 		favorites := favorites \ {h}
 	)
 	pre h in set favorites;
-		
+	
+	public addMessage(message: Message) ==
+		inbox := inbox union {message};
+	
 functions
 -- TODO Define functiones here
 traces

@@ -1,0 +1,40 @@
+class MessageTest is subclass of Test
+types
+-- TODO Define types here
+values
+-- TODO Define values here
+instance variables
+-- TODO Define instance variables here
+operations
+-- TODO Define operations here
+	public createUser() ret: User == 
+		return new User("Antonio","Antonio Melo", "antonio@gmail.com", "12345", "Portugal", "911111111", "Empresa", 123, 123, 50000);
+		
+	public createLandlord() ret: Landlord ==
+		return new Landlord("Bruno","Bruno Santos",<Male>,"922222222", "bruno@gmail.com","1234",<English>, "Rua das Flores", "Porto","4400-458","Portugal", "www.casas.com", <Owner>, 0);
+	
+	public testCreateMessage() == (
+		dcl u1: User := createUser();
+		dcl u2: User := createUser();
+		dcl l1: Landlord := createLandlord();
+		dcl l2: Landlord := createLandlord();
+		
+		dcl m1: Message := new Message(u1, u2, "Hello", nil);
+		dcl m2: Message := new Message(u1, l1, "Hello", nil);
+		dcl m3: Message := new Message(l1, u1, "Hello", nil);
+		dcl m4:	Message := new Message(l1, l2, "Hello", nil);
+		
+		assert(m1 in set u2.getMessages());
+		assert(m2 in set l1.getMessages());
+		assert(m3 in set u1.getMessages());
+		assert(m4 in set l2.getMessages());
+	);
+	
+	public test() == (
+		testCreateMessage();
+	);
+functions
+-- TODO Define functiones here
+traces
+-- TODO Define Combinatorial Test Traces here
+end MessageTest
