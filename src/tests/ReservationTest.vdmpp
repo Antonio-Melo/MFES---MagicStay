@@ -20,7 +20,7 @@ operations
 		dcl cO: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2018,1,30), mk_Types`Time(11, 00, 00));
 		dcl u: User := new User("Antonio","Antonio Melo", "antonio@gmail.com", "12345", "Portugal", "911111111", "Empresa", 123, 123, userWallet);
 		dcl l: Landlord := new Landlord("Bruno","Bruno Santos",<Male>,"922222222", "bruno@gmail.com","1234",<English>, "Rua das Flores", "Porto","4400-458","Portugal", "www.casas.com", <Owner>, hostWallet);
-		dcl a : Accomodation := new Accomodation(l,<House>, price);
+		dcl a : Accomodation := new Accomodation("Porto",2,4,2,1,l,<House>, price);
 		dcl r : Reservation := createReservation(u,l,a,cI,cO);
 		assert(r.getAccomodation() = a);
 		assert(r.getCheckIn() = cI);
@@ -37,7 +37,7 @@ operations
 		dcl hostWallet: real := 0;
 		dcl u: User := new User("Antonio","Antonio Melo", "antonio@gmail.com", "12345", "Portugal", "911111111", "Empresa", 123, 123, userWallet);
 		dcl l: Landlord := new Landlord("Bruno","Bruno Santos",<Male>,"922222222", "bruno@gmail.com","1234",<English>, "Rua das Flores", "Porto","4400-458","Portugal", "www.casas.com", <Owner>, hostWallet);
-		dcl a : Accomodation := new Accomodation(l,<House>, price);
+		dcl a : Accomodation := new Accomodation("Porto",2,4,2,1,l,<House>, price);
 		
 		dcl cI: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2018,1,19), mk_Types`Time(14, 00, 00));
 		dcl cO: Types`DateTime := mk_Types`DateTime(mk_Types`Date(2018,1,30), mk_Types`Time(11, 00, 00));

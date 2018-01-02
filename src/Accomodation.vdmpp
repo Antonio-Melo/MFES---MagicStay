@@ -6,23 +6,52 @@ values
 -- TODO Define values here
 instance variables
 -- TODO Define instance variables here
+	area: seq of char;
+	numBedrooms: nat;
+	numStars: nat;
+	numBeds: nat;
+	numOfBathrooms: nat;
 	host: Landlord;
 	type: TypeOf;
 	price: real;
 	reservations: set of Reservation := {};
 operations
 	-- TODO Define operations here
-	public Accomodation(user: Landlord, typeOf: TypeOf, p: real) ret: Accomodation == (
+	public Accomodation(a: seq of char, nBedrooms: nat, nStars: nat, nBeds: nat, nBathrooms: nat, user: Landlord, typeOf: TypeOf, p: real) ret: Accomodation == (
+		area := a;
+		numBedrooms := nBedrooms;
+		numStars := nStars;
+		numBeds := nBeds;
+		numOfBathrooms := nBathrooms;
 		host := user;
 		type := typeOf;
 		price := p;
 		host.addHouse(self);
 	)
-	post ret.host = user and
+	post ret.area = a and
+			 ret.numBedrooms = nBedrooms and
+			 ret.numStars = nStars and
+			 ret.numBeds = nBeds and
+			 ret.numOfBathrooms = nBathrooms and
+			 ret.host = user and
 			 ret.type = typeOf and
 			 ret.price = p and
 			 ret in set ret.host.getHouses(); 
-			 
+	
+	public getArea() ret: seq of char ==
+		return area;
+		
+	public getNumBedrooms() ret: nat ==
+		return numBedrooms;
+		
+	public getNumStart() ret: nat ==
+		return numStars;
+		
+	public getNumBeds() ret: nat ==
+		return numBeds;
+	
+	public getNumOfBathrooms() ret: nat ==
+		return numOfBathrooms;
 	
 	public getHost() ret: Landlord == 
 		return host;
