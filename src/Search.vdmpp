@@ -3,8 +3,8 @@ instance variables
 	area: seq of char;
 	checkIn: Types`Date;
 	checkOut: Types`Date;
-	numBedrooms: nat;
 	typeOfAccomodation: Accomodation`TypeOf;
+	numBedrooms: nat;
 	numOfStars: nat;
 	numOfBeds: nat;
 	numOfBathrooms: nat;
@@ -14,15 +14,14 @@ instance variables
 	results: set of Accomodation := {};
 	
 	--Inv
-	inv numOfStars > 0 and numOfStars < 6;
-	inv numOfStars >= 0;
+	inv numOfStars >= 0 and numOfStars <= 5;
 	inv numOfBathrooms > 0 and numOfBathrooms <6;
 	inv lowRangePrice > 0;
 	inv highRangePrice > 0 and highRangePrice > lowRangePrice;
 	
 operations
-	public Search: seq of char * Types`Date * Types`Date * nat * Accomodation`TypeOf * nat * nat * nat * real * real ==> Search
-	Search(a, cIn, cOut, nBedrooms, typeOfAcco, nOfStars,nOfBeds,nOfBathrooms,lowPrice,highPrice) == (
+	public Search: seq of char * Types`Date * Types`Date * Accomodation`TypeOf * nat * nat * nat * nat * real * real ==> Search
+	Search(a, cIn, cOut, typeOfAcco, nBedrooms, nOfStars,nOfBeds,nOfBathrooms,lowPrice,highPrice) == (
 		area := a;
 		checkIn := cIn;
 		checkOut := cOut;

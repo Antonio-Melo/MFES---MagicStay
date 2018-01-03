@@ -1,11 +1,11 @@
 class SearchTest is subclass of Test
 operations
-	public createSearch: seq of char * Types`Date * Types`Date * nat * Accomodation`TypeOf * nat * nat * nat * real * real ==> Search
-	createSearch(a, cIn, cOut, nBedrooms, typeOfAcco, nOfStars,nOfBeds,nOfBathrooms,lowPrice,highPrice) ==
-		 return new Search(a, cIn, cOut, nBedrooms, typeOfAcco, nOfStars,nOfBeds,nOfBathrooms,lowPrice,highPrice);
+	public createSearch: seq of char * Types`Date * Types`Date * Accomodation`TypeOf * nat  * nat * nat * nat * real * real ==> Search
+	createSearch(a, cIn, cOut, typeOfAcco, nBedrooms, nOfStars,nOfBeds,nOfBathrooms,lowPrice,highPrice) ==
+		 return new Search(a, cIn, cOut, typeOfAcco, nBedrooms , nOfStars,nOfBeds,nOfBathrooms,lowPrice,highPrice);
 	public testCreateSearch: () ==> ()	 
 	testCreateSearch() == (
-		dcl s : Search := createSearch("Porto",mk_Types`Date(2018,1,19),mk_Types`Date(2018,1,30),1,<House>,4,2,1,500,1000);
+		dcl s : Search := createSearch("Porto",mk_Types`Date(2018,1,19),mk_Types`Date(2018,1,30),<House>,1,4,2,1,500,1000);
 		assert(s.getArea() = "Porto");
 		assert(s.getCheckIn() = mk_Types`Date(2018,1,19));
 		assert(s.getCheckOut() = mk_Types`Date(2018,1,30));
@@ -20,7 +20,7 @@ operations
 	
 	public testSearchResults: () ==> ()
 	testSearchResults() == (
-		dcl s : Search := createSearch("Porto",mk_Types`Date(2018,1,19),mk_Types`Date(2018,1,30),1,<House>,0,2,1,500,1000);
+		dcl s : Search := createSearch("Porto",mk_Types`Date(2018,1,19),mk_Types`Date(2018,1,30),<House>,1,0,2,1,500,1000);
 		dcl l: Landlord := new Landlord("Bruno","Bruno Santos",<Male>,"922222222", "bruno@gmail.com","1234",<English>, "Rua das Flores", "Porto","4400-458","Portugal", "www.casas.com", <Owner>, 0);
 		dcl ac : Accomodation := new Accomodation("Porto",1,2,1,l,<House>, 600);
 		dcl al : Accomodation := new Accomodation("Porto",1,2,1,l,<House>, 120);
@@ -31,6 +31,6 @@ operations
 	public test: () ==> ()
 	test() == (
 		testCreateSearch();
-		--testSearchResults();
+		testSearchResults();
 	);
 end SearchTest
