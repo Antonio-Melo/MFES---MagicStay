@@ -19,7 +19,8 @@ instance variables
 	reviews: set of Review := {};
 operations
 	-- TODO Define operations here
-	public Accomodation(a: seq of char, nBedrooms: nat, nStars: nat, nBeds: nat, nBathrooms: nat, user: Landlord, typeOf: TypeOf, p: real) ret: Accomodation == (
+	public Accomodation: seq of char * nat * nat * nat * nat * Landlord * TypeOf * real ==> Accomodation
+	Accomodation(a, nBedrooms, nStars, nBeds, nBathrooms, user, typeOf, p) == (
 		area := a;
 		numBedrooms := nBedrooms;
 		numStars := nStars;
@@ -29,57 +30,50 @@ operations
 		type := typeOf;
 		price := p;
 		host.addHouse(self);
-	)
-	post ret.area = a and
-			 ret.numBedrooms = nBedrooms and
-			 ret.numStars = nStars and
-			 ret.numBeds = nBeds and
-			 ret.numOfBathrooms = nBathrooms and
-			 ret.host = user and
-			 ret.type = typeOf and
-			 ret.price = p and
-			 ret in set ret.host.getHouses(); 
-	
-	public getArea() ret: seq of char ==
-		return area;
-		
-	public getNumBedrooms() ret: nat ==
-		return numBedrooms;
-		
-	public getNumStars() ret: nat ==
-		return numStars;
-		
-	public getNumBeds() ret: nat ==
-		return numBeds;
-	
-	public getNumOfBathrooms() ret: nat ==
-		return numOfBathrooms;
-	
-	public getHost() ret: Landlord == 
-		return host;
-	
-	public getType() ret: TypeOf ==
-		return type;
-	
-	public getPrice() ret: real ==
-		return price;
-		
-	pure public getReservations() ret: set of Reservation == (
-		return reservations;
 	);
 	
-	public addReview(rev: Review) == (
+	public getArea: () ==> seq of char
+	getArea() == return area;
+	
+	public getNumBedrooms: () ==> nat 	
+	getNumBedrooms() == return numBedrooms;
+	
+	public getNumStars: () ==> nat	
+	getNumStars() == return numStars;
+	
+	public getNumBeds: () ==> nat	
+	getNumBeds()== return numBeds;
+	
+	public getNumOfBathrooms: () ==> nat
+	getNumOfBathrooms() == return numOfBathrooms;
+	
+	public getHost: () ==> Landlord
+	getHost() == return host;
+	
+	public getType: () ==> TypeOf
+	getType() == return type;
+	
+	public getPrice: () ==> real
+	getPrice() == return price;
+	
+	pure public getReservations: () ==> set of Reservation	
+	getReservations() == return reservations;
+	
+	public addReview: Review ==> ()
+	addReview(rev) == (
 		reviews := reviews union {rev};
 	) pre rev not in set reviews;
 	
-	public removeReview(rev: Review) == (
+	public removeReview: Review ==> ()
+	removeReview(rev) == (
 		reviews := reviews \ {rev};
 	)pre rev in set reviews;
 	
-	public getReviews() ret: set of Review== 
-		return reviews;
+	public getReviews: () ==> set of Review
+	getReviews() == return reviews;
 	
-	public addReservation(res: Reservation) == (
+	public addReservation: Reservation ==> ()
+	addReservation(res) == (
 		for all reservation in set reservations do (
 			if overlaps(res, reservation) then
 				return;

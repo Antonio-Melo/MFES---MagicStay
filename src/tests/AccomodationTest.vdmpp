@@ -7,10 +7,12 @@ instance variables
 -- TODO Define instance variables here
 operations
 -- TODO Define operations here
-	public createAccomodation(landlord: Landlord) ret: Accomodation == 
+	public createAccomodation: Landlord ==> Accomodation
+	createAccomodation(landlord)== 
 		return new Accomodation("Porto",2,4,2,1,landlord,<House>, 120);
 	
-	public testCreateAccomodation() == (
+	public testCreateAccomodation: () ==> ()
+	testCreateAccomodation() == (
 		dcl l: Landlord := new Landlord("Bruno","Bruno Santos",<Male>,"922222222", "bruno@gmail.com","1234",<English>, "Rua das Flores", "Porto","4400-458","Portugal", "www.casas.com", <Owner>, 0);
 		dcl a: Accomodation := createAccomodation(l);
 		assert(a.getArea() = "Porto");
@@ -23,7 +25,8 @@ operations
 		assert(a in set l.getHouses()); 
 	);
 	
-	public test() == (
+	public test: () ==> ()
+	test() == (
 		testCreateAccomodation();
 	);
 	

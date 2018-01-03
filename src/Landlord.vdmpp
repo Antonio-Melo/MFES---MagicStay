@@ -28,7 +28,8 @@ instance variables
 	houses: set of Accomodation := {};
 operations
 -- TODO Define operations here
-	public Landlord(fName: seq of char, name: seq of char, gend: Types`Gender, phoneNum: seq of char, em: seq of char, pw: seq of char, lang: LanguageCommunication, adr: seq of char, ct: seq of char, pc: seq of char, ctr: seq of char, web: seq of char, typ: TypeOf, initWallet: real) ret: Landlord == (
+	public Landlord: seq of char * seq of char * Types`Gender * seq of char * seq of char * seq of char * LanguageCommunication * seq of char * seq of char * seq of char * seq of char * seq of char * TypeOf * real ==> Landlord
+	Landlord(fName, name, gend, phoneNum, em, pw, lang, adr, ct, pc, ctr, web, typ, initWallet) == (
 		firstName := fName;
 		fullName := name;
 		gender := gend;
@@ -43,79 +44,64 @@ operations
 		website := web;
 		type := typ;
 		wallet := initWallet;
-	)
-	post ret.firstName = fName and
-			 ret.fullName = name and
-			 ret.gender = gend and
-			 ret.phoneNumber = phoneNum and
-			 ret.email = em and
-			 ret.password = pw and
-			 ret.language = lang and
-			 ret.address = adr and
-			 ret.city = ct and
-			 ret.postalCode = pc and
-			 ret.country = ctr and
-			 ret.website = web and
-			 ret.type = typ and
-			 ret.wallet = initWallet;
+	);
 			 
-			 
-	public getFirstName() ret: seq of char ==
-		return firstName;
+	public getFirstName: () ==> seq of char		 
+	getFirstName() == return firstName;
 	
-	public getFullName() ret: seq of char ==
-		return fullName;
-		
-	public getGender() ret: Types`Gender ==
-		return gender;
-		
-	public getPhoneNumber() ret: seq of char == 
-		return phoneNumber;
+	public getFullName: () ==> seq of char
+	getFullName() == return fullName;
 	
-	public getEmail() ret: seq of char ==
-		return email;
+	public getGender: () ==> Types`Gender
+	getGender() == return gender;
 	
-	public getPassword() ret: seq of char ==
-		return password;
-		
-	public getLanguage() ret: LanguageCommunication == 
-		return language;
+	public getPhoneNumber: () ==> seq of char 	
+	getPhoneNumber() == return phoneNumber;
 	
-	public getAddress() ret: seq of char ==
-		return address;
-		
-	public getCity() ret: seq of char == 
-		return city;
-		
-	public getPostalCode() ret: seq of char ==
-		return postalCode;
+	public getEmail: () ==> seq of char
+	getEmail() == return email;
 	
-	public getCountry() ret: seq of char ==
-		return country;
+	public getPassword: () ==> seq of char
+	getPassword() == return password;
 	
-	public getWebsite() ret: seq of char ==
-		return website;
-		
-	public getType() ret: TypeOf ==
-		return type;
-		
-	pure public getHouses() ret: set of Accomodation ==
-		return houses;
-		
-	public getWallet() ret: real ==
-		return wallet;
+	public getLanguage: () ==> LanguageCommunication	
+	getLanguage() == return language;
 	
-	public getMessages() ret: set of Message ==
-		return inbox;
+	public getAddress: () ==> seq of char
+	getAddress() == return address;
 	
-	public transaction(value: real) ==
-		wallet := wallet + value;
+	public getCity: () ==> seq of char	
+	getCity() == return city;
 	
-	public addHouse(house: Accomodation) ==
-		houses := houses union {house};
-		
-	public addMessage(message: Message) ==
-		inbox := inbox union {message};
+	public getPostalCode: () ==> seq of char	
+	getPostalCode() == return postalCode;
+	
+	public getCountry: () ==> seq of char	
+	getCountry() == return country;
+	
+	public getWebsite: () ==> seq of char
+	getWebsite() == return website;
+	
+	public getType: () ==> TypeOf	
+	getType() == return type;
+	
+	pure public getHouses: () ==> set of Accomodation	
+	getHouses() == return houses;
+	
+	public getWallet: () ==> real	
+	getWallet() == return wallet;
+	
+	public getMessages: () ==> set of Message
+	getMessages() == return inbox;
+	
+	public transaction: real ==> ()
+	transaction(value) == wallet := wallet + value;
+	
+	public addHouse: Accomodation ==> ()
+	addHouse(house) == houses := houses union {house};
+	
+	public addMessage: Message ==> ()
+	addMessage(message) == inbox := inbox union {message};
 	
 functions
 -- TODO Define functiones here
