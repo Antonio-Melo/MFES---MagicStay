@@ -8,5 +8,6 @@
 - [x] Make a Reservation & add to Accomodation
 - [x] Pay for reservation
 - [x] Search for rooms on a certain city/date/number of rooms/...
-- [ ] Add messages/reviews/favorites to User
+- [x] Add messages/reviews/favorites to User
 - [x] Add stars/nº of guests/nº bathrooms to Accomodation
+- [ ] Real use tests
