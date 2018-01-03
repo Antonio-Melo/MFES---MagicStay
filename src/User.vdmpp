@@ -49,6 +49,13 @@ operations
 	addFavorite(h) == favorites := favorites union {h}
 	pre h not in set favorites;
 	
+	public addFavorites: set of Accomodation ==> ()
+	addFavorites(acc) == (
+		for all a in set acc do (
+			favorites := favorites union {a};
+		);
+	);
+	
 	public removeFavorite: Accomodation ==> ()
 	removeFavorite(h) == favorites := favorites \ {h}
 	pre h in set favorites;
