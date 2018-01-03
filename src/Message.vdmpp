@@ -12,5 +12,24 @@ operations
 		content := c;
 		inReplyTo := m;
 		receiver.addMessage(self);
+	)
+	pre (m = nil) or (m.getSender() = receiver and m.getReceiver() = sender);
+	
+	public getConversation: () ==> seq of Message
+	getConversation() == (
+		if inReplyTo <> nil then
+			return inReplyTo.getConversation()^[self]
+		else
+			return [self];
 	);
+	
+	pure public getSender: () ==> Account
+	getSender() == return sender;
+	
+	pure public getReceiver: () ==> Account
+	getReceiver() == return receiver;
+	
+	public getContent: () ==> seq of char
+	getContent() == return content;
+	
 end Message

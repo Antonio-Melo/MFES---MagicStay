@@ -26,6 +26,21 @@ operations
 		assert(m4 in set l2.getMessages());
 	);
 	
+	public testConversation: () ==> ()
+	testConversation() == (
+		dcl u1: User := createUser();
+		dcl u2: User := createUser();
+		
+		dcl m1: Message := new Message(u1, u2, "Hello", nil);
+		dcl m2: Message := new Message(u2, u1, "Hello", m1);
+		dcl m3: Message := new Message(u1, u2, "How are you?", m2);
+		dcl m4:	Message := new Message(u2, u1, "Good", m3);
+		
+		dcl c: seq of Message := m4.getConversation();
+		
+		assert([m1, m2, m3, m4] = c);
+	);
+	
 	public test: () ==> ()
 	test() == (
 		testCreateMessage();
