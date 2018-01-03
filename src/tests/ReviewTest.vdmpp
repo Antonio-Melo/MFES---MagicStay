@@ -13,7 +13,9 @@ operations
 		assert(review.getReview() = "Very good!");
 		assert(review.getUser() = user);
 		accomodation.addReview(review);
-		assert(review in set accomodation.getReviews()); 
+		assert(review in set rng accomodation.getReviews());
+		accomodation.removeReview(review);
+		assert(review not in set rng accomodation.getReviews());
 	);
 	
 	public test: () ==> ()

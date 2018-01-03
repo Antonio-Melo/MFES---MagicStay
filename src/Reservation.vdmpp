@@ -22,10 +22,10 @@ operations
 	public getAccomodation: () ==> Accomodation
 	getAccomodation() == return house;
 	
-	public getCheckIn: () ==> Types`DateTime
+	pure public getCheckIn: () ==> Types`DateTime
 	getCheckIn() == return checkIn;
 		
-	public getCheckOut: () ==> Types`DateTime
+	pure public getCheckOut: () ==> Types`DateTime
 	getCheckOut() == return checkOut;
 	
 	public getPrice: () ==> nat

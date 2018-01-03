@@ -12,7 +12,7 @@ instance variables
 	price: real;
 	
 	reservations: set of Reservation := {};
-	reviews: set of Review := {};
+	reviews: map User to Review := {|->};
 operations
 	public Accomodation: seq of char * nat * nat * nat * nat * Landlord * TypeOf * real ==> Accomodation
 	Accomodation(a, nBedrooms, nStars, nBeds, nBathrooms, user, typeOf, p) == (
@@ -55,34 +55,38 @@ operations
 	getReservations() == return reservations;
 	
 	public addReview: Review ==> ()
-	addReview(rev) == (
-		reviews := reviews union {rev};
-	)
-	pre rev not in set reviews;
+	addReview(rev) == reviews := reviews ++ {rev.getUser() |-> rev}
+	pre rev.getUser() not in set dom reviews
+	post rev in set rng reviews;
 	
 	public removeReview: Review ==> ()
-	removeReview(rev) == (
-		reviews := reviews \ {rev};
-	)
-	pre rev in set reviews;
+	removeReview(rev) == reviews := {rev.getUser()} <-: reviews
+	pre rev in set rng reviews
+	post (rev not in set rng reviews) and (rev.getUser() not in set dom reviews);
 	
-	public getReviews: () ==> set of Review
+	public getReviews: () ==> map User to Review
 	getReviews() == return reviews;
 	
 	public addReservation: Reservation ==> ()
 	addReservation(res) == (
-		for all reservation in set reservations do (
-			if overlaps(res, reservation) then
-				return;
-		);
 		res.setPrice(price);
 		res.getUser().transaction(-price);
 		host.transaction(price);
 		reservations := reservations union {res};
 	)
-	pre res.getUser().getWallet() > price;
+	pre res.getUser().getWallet() > price and not checkValid(res)
+	post res in set reservations;
+	
+	pure private checkValid: Reservation ==> bool
+	checkValid(res) == (
+		for all reservation in set reservations do (
+			if overlaps(res, reservation) then
+				return true;
+		);
+		return false;
+	);
 
-	private overlaps: Reservation * Reservation ==> bool
+	pure private overlaps: Reservation * Reservation ==> bool
 	overlaps(res1, res2) == (
 		if Types`compare(res1.getCheckIn().date, res2.getCheckOut().date) <= 0 or Types`compare(res2.getCheckIn().date, res1.getCheckOut().date) <= 0 then (
 			return false)

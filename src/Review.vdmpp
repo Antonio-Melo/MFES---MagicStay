@@ -10,7 +10,7 @@ operations
 	);
 	--TODO
 		-- Add postconditions
-	public getUser: () ==> User			
+	pure public getUser: () ==> User			
 	getUser() == return user;
 	
 	public getReview: () ==> seq of char 
