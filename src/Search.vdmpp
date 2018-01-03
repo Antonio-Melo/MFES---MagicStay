@@ -27,7 +27,8 @@ instance variables
 	
 operations
 -- TODO Define operations here
-	public Search(a: seq of char, cIn: Types`Date, cOut: Types`Date, nBedrooms: nat, typeOfAcco: Accomodation`TypeOf, nOfStars: nat,nOfBeds: nat,nOfBathrooms: nat,lowPrice: real,highPrice: real) ret: Search == (
+	public Search: seq of char * Types`Date * Types`Date * nat * Accomodation`TypeOf * nat * nat * nat * real * real ==> Search
+	Search(a, cIn, cOut, nBedrooms, typeOfAcco, nOfStars,nOfBeds,nOfBathrooms,lowPrice,highPrice) == (
 		area := a;
 		checkIn := cIn;
 		checkOut := cOut;
@@ -38,19 +39,11 @@ operations
 		numOfBathrooms := nOfBathrooms;
 		lowRangePrice := lowPrice;
 		highRangePrice := highPrice;
-	) post ret.area = area and
-				 ret.checkIn = cIn and
-				 ret.checkOut = cOut and
-				 ret.numBedrooms = nBedrooms and
-				 ret.typeOfAccomodation = typeOfAcco and
-				 ret.numOfStars = nOfStars and
-				 ret.numOfBeds = nOfBeds and
-				 ret.numOfBathrooms = nOfBathrooms and
-				 ret.lowRangePrice = lowPrice and
-				 ret.highRangePrice = highPrice and
-				 ret.results = {};
-				 
-	public searchResults(accomodations: set of Accomodation) ret: set of Accomodation== (
+	);
+	--TODO
+		--Adicionar post conditions
+	public searchResults: set of Accomodation ==> set of Accomodation		 
+	searchResults(accomodations) == (
 		results := {};
 		for all a in set accomodations do (
 			if a.getArea() = area and
@@ -66,28 +59,36 @@ operations
 		);
 		return results;
 	);
-				 
-	public getArea() ret: seq of char ==
-		return area
-		post ret = area;
-	public getCheckIn() ret: Types`Date == 
-		return checkIn;
-	public getCheckOut() ret: Types`Date == 
-		return checkOut;
-	public getNumBedrooms() ret: nat == 
-		return numBedrooms;
-	public getTypeOfAccomodation() ret: Accomodation`TypeOf == 
-		return typeOfAccomodation;
-	public getNumOfStars() ret: nat ==
-		return numOfStars;
-	public getNumOfBeds() ret: nat ==
-		return numOfBeds;
-	public getNumOfBathrooms() ret: nat ==
-		return numOfBathrooms;
-	public getLowRangePrice() ret:real ==
-		return lowRangePrice;
-	public getHighRangePrice() ret: real ==
-		return highRangePrice;
+	
+	public getArea: () ==> seq of char		 
+	getArea() == return area;
+	
+	public getCheckIn: () ==> Types`Date
+	getCheckIn() == return checkIn;
+	
+	public getCheckOut: () ==> Types`Date
+	getCheckOut() == return checkOut;
+	
+	public getNumBedrooms: () ==> nat
+	getNumBedrooms() == return numBedrooms;
+	
+	public getTypeOfAccomodation: () ==> Accomodation`TypeOf
+	getTypeOfAccomodation() == return typeOfAccomodation;
+	
+	public getNumOfStars: () ==> nat
+	getNumOfStars() ==	return numOfStars;
+	
+	public getNumOfBeds: () ==> nat
+	getNumOfBeds() == return numOfBeds;
+	
+	public getNumOfBathrooms: () ==> nat
+	getNumOfBathrooms() == return numOfBathrooms;
+	
+	public getLowRangePrice: () ==> real
+	getLowRangePrice() == return lowRangePrice;
+	
+	public getHighRangePrice: () ==> real
+	getHighRangePrice() == return highRangePrice;
 functions
 -- TODO Define functiones here
 traces

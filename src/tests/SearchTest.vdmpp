@@ -7,10 +7,11 @@ instance variables
 -- TODO Define instance variables here
 operations
 -- TODO Define operations here
-	public createSearch(a: seq of char, cIn: Types`Date, cOut: Types`Date, nBedrooms: nat, typeOfAcco: Accomodation`TypeOf, nOfStars: nat,nOfBeds: nat,nOfBathrooms: nat,lowPrice: real,highPrice: real) ret: Search ==
+	public createSearch: seq of char * Types`Date * Types`Date * nat * Accomodation`TypeOf * nat * nat * nat * real * real ==> Search
+	createSearch(a, cIn, cOut, nBedrooms, typeOfAcco, nOfStars,nOfBeds,nOfBathrooms,lowPrice,highPrice) ==
 		 return new Search(a, cIn, cOut, nBedrooms, typeOfAcco, nOfStars,nOfBeds,nOfBathrooms,lowPrice,highPrice);
-		 
-	public testCreateSearch() == (
+	public testCreateSearch: () ==> ()	 
+	testCreateSearch() == (
 		dcl s : Search := createSearch("Porto",mk_Types`Date(2018,1,19),mk_Types`Date(2018,1,30),1,<House>,4,2,1,500,1000);
 		assert(s.getArea() = "Porto");
 		assert(s.getCheckIn() = mk_Types`Date(2018,1,19));
@@ -24,7 +25,8 @@ operations
 		assert(s.getHighRangePrice() = 1000);
 	);
 	
-	public testSearchResults() == (
+	public testSearchResults: () ==> ()
+	testSearchResults() == (
 		dcl s : Search := createSearch("Porto",mk_Types`Date(2018,1,19),mk_Types`Date(2018,1,30),1,<House>,4,2,1,500,1000);
 		dcl l: Landlord := new Landlord("Bruno","Bruno Santos",<Male>,"922222222", "bruno@gmail.com","1234",<English>, "Rua das Flores", "Porto","4400-458","Portugal", "www.casas.com", <Owner>, 0);
 		dcl ac : Accomodation := new Accomodation("Porto",1,4,2,1,l,<House>, 600);
@@ -33,7 +35,8 @@ operations
 		assert( a = {ac});
 	);
 	
-	public test() == (
+	public test: () ==> ()
+	test() == (
 		testCreateSearch();
 		testSearchResults();
 	);	
