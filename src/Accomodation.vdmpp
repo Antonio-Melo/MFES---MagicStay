@@ -74,7 +74,7 @@ operations
 		host.transaction(price);
 		reservations := reservations union {res};
 	)
-	pre res.getUser().getWallet() > price and not checkValid(res)
+	pre res.getUser().getWallet() > price and card {reservation | reservation in set reservations & overlaps(res, reservation)} = 0
 	post res in set reservations;
 	
 	public cancelReservation: Reservation ==> ()
@@ -85,15 +85,6 @@ operations
 		reservations := reservations \ {res};	
 	)
 	pre res in set reservations;
-	
-	pure private checkValid: Reservation ==> bool
-	checkValid(res) == (
-		for all reservation in set reservations do (
-			if overlaps(res, reservation) then
-				return true;
-		);
-		return false;
-	);
 
 	pure private overlaps: Reservation * Reservation ==> bool
 	overlaps(res1, res2) == (
