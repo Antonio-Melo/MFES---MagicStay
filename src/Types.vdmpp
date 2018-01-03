@@ -20,7 +20,8 @@ instance variables
 -- TODO Define instance variables here
 operations
 	-- Returns -1 if d1 is after d2, 1 if d2 is after d1, or 0 if same date
-	public static compare(d1: Date, d2: Date) ret: int == (
+	public static compare: Date * Date ==> int
+	compare(d1,d2) == (
 		if d1.year > d2.year then return -1
 		else if d1.year < d2.year then return 1
 		else
