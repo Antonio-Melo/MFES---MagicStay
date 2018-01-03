@@ -1,12 +1,5 @@
 class AccomodationTest is subclass of Test
-types
--- TODO Define types here
-values
--- TODO Define values here
-instance variables
--- TODO Define instance variables here
 operations
--- TODO Define operations here
 	public createAccomodation: Landlord ==> Accomodation
 	createAccomodation(landlord)== 
 		return new Accomodation("Porto",2,4,2,1,landlord,<House>, 120);
@@ -29,9 +22,4 @@ operations
 	test() == (
 		testCreateAccomodation();
 	);
-	
-functions
--- TODO Define functiones here
-traces
--- TODO Define Combinatorial Test Traces here
 end AccomodationTest

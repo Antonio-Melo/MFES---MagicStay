@@ -1,6 +1,5 @@
 class Types
 types
--- TODO Define types here
 	public Gender = <Male> | <Female>;
 	public Date :: year : int
 								 month : int
@@ -14,10 +13,6 @@ types
 				 		 				 time.second >=0 and time.second <60;
 	public DateTime :: date : Date
 										 time : Time;
-values
--- TODO Define values here
-instance variables
--- TODO Define instance variables here
 operations
 	-- Returns -1 if d1 is after d2, 1 if d2 is after d1, or 0 if same date
 	public static compare: Date * Date ==> int
@@ -32,9 +27,4 @@ operations
 				else if d1.day < d2.day then return 1
 				else return 0;
 	)
-	
-functions
--- TODO Define functiones here
-traces
--- TODO Define Combinatorial Test Traces here
 end Types

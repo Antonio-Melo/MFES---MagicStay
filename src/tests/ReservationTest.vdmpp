@@ -1,12 +1,5 @@
 class ReservationTest is subclass of Test
-types
-	
-values
--- TODO Define values here
-instance variables
--- TODO Define instance variables here
 operations
--- TODO Define operations here
 	public createReservation: User * Accomodation * Types`DateTime * Types`DateTime ==> Reservation
 	createReservation(u, a, cI, cO) ==
 		return new Reservation(u, a, cI, cO) ;
@@ -95,8 +88,4 @@ operations
 		testCreateReservation();
 		testOverlappingReservations();
 	);
-functions
--- TODO Define functiones here
-traces
--- TODO Define Combinatorial Test Traces here
 end ReservationTest

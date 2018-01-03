@@ -1,12 +1,5 @@
 class MagicStayTest
-types
--- TODO Define types here
-values
--- TODO Define values here
-instance variables
--- TODO Define instance variables here
 operations
--- TODO Define operations here
 	public static main: () ==> ()
 	main() == (
 		IO`println("Starting MagicStay Tests");
@@ -39,8 +32,4 @@ operations
 		new MessageTest().test();	
 		IO`println("successfully!");
 	);
-functions
--- TODO Define functiones here
-traces
--- TODO Define Combinatorial Test Traces here
 end MagicStayTest

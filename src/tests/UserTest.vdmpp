@@ -1,12 +1,5 @@
 class UserTest is subclass of Test
-types
--- TODO Define types here
-values
--- TODO Define values here
-instance variables
--- TODO Define instance variables here
 operations
--- TODO Define operations here
 	public createUser: () ==>  User
 	createUser() == return new User("Antonio","Antonio Melo", "antonio@gmail.com", "12345", "Portugal", "911111111", "Empresa", 123, 123, 50000);
 		
@@ -49,9 +42,4 @@ operations
 		testCreateUser();
 		testFavorites();
 	);
-
-functions
--- TODO Define functiones here
-traces
--- TODO Define Combinatorial Test Traces here
 end UserTest

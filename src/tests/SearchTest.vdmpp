@@ -1,12 +1,5 @@
 class SearchTest is subclass of Test
-types
--- TODO Define types here
-values
--- TODO Define values here
-instance variables
--- TODO Define instance variables here
 operations
--- TODO Define operations here
 	public createSearch: seq of char * Types`Date * Types`Date * nat * Accomodation`TypeOf * nat * nat * nat * real * real ==> Search
 	createSearch(a, cIn, cOut, nBedrooms, typeOfAcco, nOfStars,nOfBeds,nOfBathrooms,lowPrice,highPrice) ==
 		 return new Search(a, cIn, cOut, nBedrooms, typeOfAcco, nOfStars,nOfBeds,nOfBathrooms,lowPrice,highPrice);
@@ -39,9 +32,5 @@ operations
 	test() == (
 		testCreateSearch();
 		testSearchResults();
-	);	
-functions
--- TODO Define functiones here
-traces
--- TODO Define Combinatorial Test Traces here
+	);
 end SearchTest

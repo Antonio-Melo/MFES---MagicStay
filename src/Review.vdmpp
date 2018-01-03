@@ -1,14 +1,8 @@
 class Review
-types
--- TODO Define types here
-values
--- TODO Define values here
 instance variables
--- TODO Define instance variables here
 	user: User;
 	review: seq of char;
 operations
--- TODO Define operations here
 	public Review: User * seq of char ==> Review
 	Review(u, r) == (
 		user := u;
@@ -20,9 +14,5 @@ operations
 	getUser() == return user;
 	
 	public getReview: () ==> seq of char 
-	getReview() == return review; 
-functions
--- TODO Define functiones here
-traces
--- TODO Define Combinatorial Test Traces here
+	getReview() == return review;
 end Review

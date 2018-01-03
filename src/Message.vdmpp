@@ -1,8 +1,6 @@
 class Message
 types
 	public Person = User | Landlord;
-values
--- TODO Define values here
 instance variables
 	sender: Person;
 	receiver: Person;
@@ -17,9 +15,4 @@ operations
 		inReplyTo := m;
 		receiver.addMessage(self);
 	);
-	
-functions
--- TODO Define functiones here
-traces
--- TODO Define Combinatorial Test Traces here
 end Message

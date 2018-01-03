@@ -1,11 +1,7 @@
 class Accomodation
 types
--- TODO Define types here
 	public TypeOf = <House> | <Apartment> | <ApartaHotel> | <Hotel>;
-values
--- TODO Define values here
 instance variables
--- TODO Define instance variables here
 	area: seq of char;
 	numBedrooms: nat;
 	numStars: nat;
@@ -18,7 +14,6 @@ instance variables
 	reservations: set of Reservation := {};
 	reviews: set of Review := {};
 operations
-	-- TODO Define operations here
 	public Accomodation: seq of char * nat * nat * nat * nat * Landlord * TypeOf * real ==> Accomodation
 	Accomodation(a, nBedrooms, nStars, nBeds, nBathrooms, user, typeOf, p) == (
 		area := a;
@@ -62,12 +57,14 @@ operations
 	public addReview: Review ==> ()
 	addReview(rev) == (
 		reviews := reviews union {rev};
-	) pre rev not in set reviews;
+	)
+	pre rev not in set reviews;
 	
 	public removeReview: Review ==> ()
 	removeReview(rev) == (
 		reviews := reviews \ {rev};
-	)pre rev in set reviews;
+	)
+	pre rev in set reviews;
 	
 	public getReviews: () ==> set of Review
 	getReviews() == return reviews;
@@ -85,16 +82,11 @@ operations
 	)
 	pre res.getUser().getWallet() > price;
 
-	private overlaps(res1: Reservation, res2: Reservation) ret: bool == (
+	private overlaps: Reservation * Reservation ==> bool
+	overlaps(res1, res2) == (
 		if Types`compare(res1.getCheckIn().date, res2.getCheckOut().date) <= 0 or Types`compare(res2.getCheckIn().date, res1.getCheckOut().date) <= 0 then (
 			return false)
 		else
 			return true;
 	);
-
-
-functions
--- TODO Define functiones here
-traces
--- TODO Define Combinatorial Test Traces here
 end Accomodation
