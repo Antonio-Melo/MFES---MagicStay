@@ -1,18 +1,27 @@
 class Review
 instance variables
 	user: User;
-	review: seq of char;
+	house: Accomodation;
+	content: seq of char;
+	rating: nat;
+	
+	inv rating >= 0 and rating <= 5; 
 operations
-	public Review: User * seq of char ==> Review
-	Review(u, r) == (
+	public Review: User * Accomodation * seq of char * nat ==> Review
+	Review(u, h, c, star) == (
 		user := u;
-		review := r;
+		house := h;
+		content := c;
+		rating := star;
+		house.addReview(self);
 	);
-	--TODO
-		-- Add postconditions
+	
 	pure public getUser: () ==> User			
 	getUser() == return user;
 	
-	public getReview: () ==> seq of char 
-	getReview() == return review;
+	public getContent: () ==> seq of char 
+	getContent() == return content;
+	
+	public getRating: () ==> nat
+	getRating() == return rating;
 end Review

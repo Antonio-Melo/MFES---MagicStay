@@ -1,18 +1,17 @@
 class ReviewTest is subclass of Test
 operations
-	public createReview: User * seq of char ==> Review
-	createReview(user, review) ==
-		return new Review(user,review);
+	public createReview: User * Accomodation * seq of char * nat ==> Review
+	createReview(user, house, review, rating) ==
+		return new Review(user, house, review, rating);
 	
 	public testCreateReview: () ==> ()	
 	testCreateReview() == (
 		dcl user: User := new User("Antonio","Antonio Melo", "antonio@gmail.com", "12345", "Portugal", "911111111", "Empresa", 123, 123, 50000);
 		dcl landlord: Landlord := new Landlord("Bruno","Bruno Santos",<Male>,"922222222", "bruno@gmail.com","1234",<English>, "Rua das Flores", "Porto","4400-458","Portugal", "www.casas.com", <Owner>, 0);
-		dcl accomodation : Accomodation := new Accomodation("Porto",2,4,2,1,landlord,<House>, 120);
-		dcl review: Review := new Review(user, "Very good!");
-		assert(review.getReview() = "Very good!");
+		dcl accomodation : Accomodation := new Accomodation("Porto",4,2,1,landlord,<House>, 120);
+		dcl review: Review := new Review(user, accomodation, "Very good!", 4);
+		assert(review.getContent() = "Very good!");
 		assert(review.getUser() = user);
-		accomodation.addReview(review);
 		assert(review in set rng accomodation.getReviews());
 		accomodation.removeReview(review);
 		assert(review not in set rng accomodation.getReviews());

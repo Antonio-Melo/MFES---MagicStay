@@ -4,8 +4,8 @@ types
 instance variables
 	area: seq of char;
 	numBedrooms: nat;
-	numStars: nat;
 	numBeds: nat;
+	numStars: nat;
 	numOfBathrooms: nat;
 	host: Landlord;
 	type: TypeOf;
@@ -14,12 +14,12 @@ instance variables
 	reservations: set of Reservation := {};
 	reviews: map User to Review := {|->};
 operations
-	public Accomodation: seq of char * nat * nat * nat * nat * Landlord * TypeOf * real ==> Accomodation
-	Accomodation(a, nBedrooms, nStars, nBeds, nBathrooms, user, typeOf, p) == (
+	public Accomodation: seq of char * nat * nat * nat * Landlord * TypeOf * real ==> Accomodation
+	Accomodation(a, nBedrooms, nBeds, nBathrooms, user, typeOf, p) == (
 		area := a;
 		numBedrooms := nBedrooms;
-		numStars := nStars;
 		numBeds := nBeds;
+		numStars := 0;
 		numOfBathrooms := nBathrooms;
 		host := user;
 		type := typeOf;
@@ -54,13 +54,31 @@ operations
 	pure public getReservations: () ==> set of Reservation	
 	getReservations() == return reservations;
 	
+	private updateNumStars: () ==> ()
+	updateNumStars() == (
+		dcl sum: nat := 0;
+		dcl n: nat := card dom reviews;
+		
+		for all r in set rng reviews do (
+			sum := sum + r.getRating()
+		);
+		if n = 0 then n := 1;
+		numStars := sum / n;
+	);
+	
 	public addReview: Review ==> ()
-	addReview(rev) == reviews := reviews ++ {rev.getUser() |-> rev}
+	addReview(rev) == (
+		reviews := reviews ++ {rev.getUser() |-> rev};
+		updateNumStars()
+	)
 	pre rev.getUser() not in set dom reviews
 	post rev in set rng reviews;
 	
 	public removeReview: Review ==> ()
-	removeReview(rev) == reviews := {rev.getUser()} <-: reviews
+	removeReview(rev) == (
+		reviews := {rev.getUser()} <-: reviews;
+		updateNumStars()
+	)
 	pre rev in set rng reviews
 	post (rev not in set rng reviews) and (rev.getUser() not in set dom reviews);
 	

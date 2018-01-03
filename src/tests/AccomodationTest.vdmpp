@@ -2,7 +2,7 @@ class AccomodationTest is subclass of Test
 operations
 	public createAccomodation: Landlord ==> Accomodation
 	createAccomodation(landlord)== 
-		return new Accomodation("Porto",2,4,2,1,landlord,<House>, 120);
+		return new Accomodation("Porto",2,2,1,landlord,<House>, 120);
 	
 	public testCreateAccomodation: () ==> ()
 	testCreateAccomodation() == (
@@ -10,7 +10,6 @@ operations
 		dcl a: Accomodation := createAccomodation(l);
 		assert(a.getArea() = "Porto");
 		assert(a.getNumBedrooms() = 2);
-		assert(a.getNumStars() = 4);
 		assert(a.getNumBeds() = 2);
 		assert(a.getNumOfBathrooms() = 1);
 		assert(a.getHost() = l);

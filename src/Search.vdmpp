@@ -15,7 +15,7 @@ instance variables
 	
 	--Inv
 	inv numOfStars > 0 and numOfStars < 6;
-	inv numOfStars > 0;
+	inv numOfStars >= 0;
 	inv numOfBathrooms > 0 and numOfBathrooms <6;
 	inv lowRangePrice > 0;
 	inv highRangePrice > 0 and highRangePrice > lowRangePrice;

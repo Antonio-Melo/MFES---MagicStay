@@ -24,9 +24,9 @@ operations
 	testFavorites() == (
 		dcl landlord: Landlord := createLandlord();
 		dcl u1: User := createUser();
-		dcl h1: Accomodation := new Accomodation("Porto",2,4,2,1,landlord,<House>, 120);
-		dcl h2: Accomodation := new Accomodation("Porto",3,4,2,1,landlord,<House>, 80);
-		dcl h3: Accomodation := new Accomodation("Porto",1,4,2,1,landlord,<House>, 90);
+		dcl h1: Accomodation := new Accomodation("Porto",4,2,1,landlord,<House>, 120);
+		dcl h2: Accomodation := new Accomodation("Porto",4,2,1,landlord,<House>, 80);
+		dcl h3: Accomodation := new Accomodation("Porto",4,2,1,landlord,<House>, 90);
 		u1.addFavorite(h1);
 		u1.addFavorite(h2);
 		assert(h2 in set u1.getFavorites());
