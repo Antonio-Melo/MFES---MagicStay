@@ -8,8 +8,8 @@ public class Search {
   private String area;
   private Types.Date checkIn;
   private Types.Date checkOut;
-  private Number numBedrooms;
   private Object typeOfAccomodation;
+  private Number numBedrooms;
   private Number numOfStars;
   private Number numOfBeds;
   private Number numOfBathrooms;
@@ -21,8 +21,8 @@ public class Search {
       final String a,
       final Types.Date cIn,
       final Types.Date cOut,
-      final Number nBedrooms,
       final Object typeOfAcco,
+      final Number nBedrooms,
       final Number nOfStars,
       final Number nOfBeds,
       final Number nOfBathrooms,
@@ -45,8 +45,8 @@ public class Search {
       final String a,
       final Types.Date cIn,
       final Types.Date cOut,
-      final Number nBedrooms,
       final Object typeOfAcco,
+      final Number nBedrooms,
       final Number nOfStars,
       final Number nOfBeds,
       final Number nOfBathrooms,
@@ -57,8 +57,8 @@ public class Search {
         a,
         Utils.copy(cIn),
         Utils.copy(cOut),
-        nBedrooms,
         typeOfAcco,
+        nBedrooms,
         nOfStars,
         nOfBeds,
         nOfBathrooms,
@@ -69,8 +69,8 @@ public class Search {
   public VDMSet searchResults(final VDMSet accomodations) {
 
     results = SetUtil.set();
-    for (Iterator iterator_3 = accomodations.iterator(); iterator_3.hasNext(); ) {
-      Accomodation a = (Accomodation) iterator_3.next();
+    for (Iterator iterator_4 = accomodations.iterator(); iterator_4.hasNext(); ) {
+      Accomodation a = (Accomodation) iterator_4.next();
       Boolean andResult_22 = false;
 
       if (Utils.equals(a.getArea(), area)) {
@@ -195,10 +195,10 @@ public class Search {
         + Utils.toString(checkIn)
         + ", checkOut := "
         + Utils.toString(checkOut)
-        + ", numBedrooms := "
-        + Utils.toString(numBedrooms)
         + ", typeOfAccomodation := "
         + Utils.toString(typeOfAccomodation)
+        + ", numBedrooms := "
+        + Utils.toString(numBedrooms)
         + ", numOfStars := "
         + Utils.toString(numOfStars)
         + ", numOfBeds := "

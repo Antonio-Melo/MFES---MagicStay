@@ -9,8 +9,8 @@ public class SearchTest extends Test {
       final String a,
       final Types.Date cIn,
       final Types.Date cOut,
-      final Number nBedrooms,
       final Object typeOfAcco,
+      final Number nBedrooms,
       final Number nOfStars,
       final Number nOfBeds,
       final Number nOfBathrooms,
@@ -21,8 +21,8 @@ public class SearchTest extends Test {
         a,
         Utils.copy(cIn),
         Utils.copy(cOut),
-        nBedrooms,
         ((Object) typeOfAcco),
+        nBedrooms,
         nOfStars,
         nOfBeds,
         nOfBathrooms,
@@ -37,8 +37,8 @@ public class SearchTest extends Test {
             "Porto",
             new Types.Date(2018L, 1L, 19L),
             new Types.Date(2018L, 1L, 30L),
-            1L,
             MagicStay.quotes.HouseQuote.getInstance(),
+            1L,
             4L,
             2L,
             1L,
@@ -63,8 +63,8 @@ public class SearchTest extends Test {
             "Porto",
             new Types.Date(2018L, 1L, 19L),
             new Types.Date(2018L, 1L, 30L),
-            1L,
             MagicStay.quotes.HouseQuote.getInstance(),
+            1L,
             0L,
             2L,
             1L,
@@ -97,6 +97,7 @@ public class SearchTest extends Test {
   public void test() {
 
     testCreateSearch();
+    testSearchResults();
   }
 
   public SearchTest() {}

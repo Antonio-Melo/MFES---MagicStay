@@ -80,6 +80,14 @@ public class User extends Account {
     favorites = SetUtil.union(Utils.copy(favorites), SetUtil.set(h));
   }
 
+  public void addFavorites(final VDMSet acc) {
+
+    for (Iterator iterator_3 = acc.iterator(); iterator_3.hasNext(); ) {
+      Accomodation a = (Accomodation) iterator_3.next();
+      favorites = SetUtil.union(Utils.copy(favorites), SetUtil.set(a));
+    }
+  }
+
   public void removeFavorite(final Accomodation h) {
 
     favorites = SetUtil.diff(Utils.copy(favorites), SetUtil.set(h));

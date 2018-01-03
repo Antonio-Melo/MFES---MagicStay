@@ -29,6 +29,9 @@ public class MagicStayTest {
     IO.print("Testing Message...");
     new MessageTest().test();
     IO.println("successfully!");
+    IO.print("Testing a real case use of Magic Stay...");
+    new RealCaseTest().test();
+    IO.println("successfully!");
   }
 
   public MagicStayTest() {}
