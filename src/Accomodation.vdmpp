@@ -77,6 +77,15 @@ operations
 	pre res.getUser().getWallet() > price and not checkValid(res)
 	post res in set reservations;
 	
+	public cancelReservation: Reservation ==> ()
+	cancelReservation(res) == (
+		dcl p: real := res.getPrice();
+		res.getUser().transaction(p);
+		host.transaction(-p);
+		reservations := reservations \ {res};	
+	)
+	pre res in set reservations;
+	
 	pure private checkValid: Reservation ==> bool
 	checkValid(res) == (
 		for all reservation in set reservations do (
