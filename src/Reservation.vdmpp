@@ -11,46 +11,33 @@ instance variables
 	checkOut: Types`DateTime;
 	price: real;
 operations
-	public Reservation(u: User, h: Accomodation, cI: Types`DateTime, cO: Types`DateTime) ret: Reservation == (
+	public Reservation: User * Accomodation * Types`DateTime * Types`DateTime ==> Reservation
+	Reservation(u, h, cI, cO) == (
 		user := u;
 		house := h;
 		checkIn := cI;
 		checkOut := cO;
 		house.addReservation(self);
-	)
-	post ret.user = u and
-			 ret.house = h and
-			 ret.checkIn = cI and
-			 ret.checkOut = cO;
-	
-	pure public getUser() ret: User == (
-		return user;
-	)
-	post ret = user;
-	
-	public getAccomodation() ret: Accomodation == (
-		return house;
-	)
-	post ret = house;
-	
-	public getCheckIn() ret: Types`DateTime == (
-		return checkIn;
-	)
-	post ret = checkIn;
-		
-	public getCheckOut() ret: Types`DateTime == (
-		return checkOut;
-	)
-	post ret = checkOut;
-	
-	public getPrice() ret: real == (
-		return price;
-	)
-	post ret = price;
-	
-	public setPrice(p: real) == (
-		price := p;
 	);
+	-- TODO
+		-- Add postconditions
+	pure public getUser: () ==> User	
+	getUser() == return user;
+	
+	public getAccomodation: () ==> Accomodation
+	getAccomodation() == return house;
+	
+	public getCheckIn: () ==> Types`DateTime
+	getCheckIn() == return checkIn;
+		
+	public getCheckOut: () ==> Types`DateTime
+	getCheckOut() == return checkOut;
+	
+	public getPrice: () ==> nat
+	getPrice() == return price;
+	
+	public setPrice: real ==> ()
+	setPrice(p) == price := p;
 	
 functions
 -- TODO Define functiones here

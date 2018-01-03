@@ -9,7 +9,8 @@ instance variables
 	content: seq of char;
 	inReplyTo: [Message];
 operations
-	public Message(s: Person, r: Person, c: seq of char, m: [Message]) ret: Message == (
+	public Message: Person * Person * seq of char * [Message] ==> Message 
+	Message(s, r, c, m) == (
 		sender := s;
 		receiver := r;
 		content := c;

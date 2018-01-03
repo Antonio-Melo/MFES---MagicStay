@@ -7,12 +7,12 @@ instance variables
 -- TODO Define instance variables here
 operations
 -- TODO Define operations here
-
-	public createReservation(u: User, l: Landlord, a: Accomodation, cI: Types`DateTime, cO: Types`DateTime) ret: Reservation == (
+	public createReservation: User * Landlord * Accomodation * Types`DateTime * Types`DateTime ==> Reservation
+	createReservation(u, l, a, cI, cO) ==
 		return new Reservation(u, a, cI, cO) ;
-	);
 	
-	public testCreateReservation() == (
+	public testCreateReservation: () ==> ()
+	testCreateReservation() == (
 		dcl price: real := 120;
 		dcl userWallet: real := 50000;
 		dcl hostWallet: real := 0;
@@ -31,7 +31,8 @@ operations
 		assert(r.getAccomodation().getHost().getWallet() = hostWallet+price);
 	);
 	
-	public testOverlappingReservations() == (
+	public testOverlappingReservations: () ==> ()
+	testOverlappingReservations() == (
 		dcl price: real := 120;
 		dcl userWallet: real := 50000;
 		dcl hostWallet: real := 0;
@@ -89,7 +90,8 @@ operations
 		assert(r.getAccomodation().getHost().getWallet() = hostWallet+price*5);
 	);
 	
-	public test() == (
+	public test: () ==> ()
+	test() == (
 		testCreateReservation();
 		testOverlappingReservations();
 	);

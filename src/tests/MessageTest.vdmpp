@@ -7,13 +7,16 @@ instance variables
 -- TODO Define instance variables here
 operations
 -- TODO Define operations here
-	public createUser() ret: User == 
+	public createUser: () ==> User
+	createUser() == 
 		return new User("Antonio","Antonio Melo", "antonio@gmail.com", "12345", "Portugal", "911111111", "Empresa", 123, 123, 50000);
-		
-	public createLandlord() ret: Landlord ==
+	
+	public createLandlord: () ==> Landlord	
+	createLandlord() ==
 		return new Landlord("Bruno","Bruno Santos",<Male>,"922222222", "bruno@gmail.com","1234",<English>, "Rua das Flores", "Porto","4400-458","Portugal", "www.casas.com", <Owner>, 0);
 	
-	public testCreateMessage() == (
+	public testCreateMessage: () ==> ()
+	testCreateMessage() == (
 		dcl u1: User := createUser();
 		dcl u2: User := createUser();
 		dcl l1: Landlord := createLandlord();
@@ -30,7 +33,8 @@ operations
 		assert(m4 in set l2.getMessages());
 	);
 	
-	public test() == (
+	public test: () ==> ()
+	test() == (
 		testCreateMessage();
 	);
 functions
