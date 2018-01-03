@@ -1,20 +1,13 @@
-class User
+class User is subclass of Account
 instance variables
 	--Default
-	firstName: seq of char;
-	fullName: seq of char;
-	email: seq of char;
-	password: seq of char;
 	country: seq of char;
-	phoneNumber: seq of char;
 	company: seq of char;
 	companyRegNum: nat;
 	vat: nat;
-	wallet: real;
 	
 	--Others
 	favorites: set of Accomodation := {};
-	inbox: set of Message := {};
 	
 	--Inv
 	inv companyRegNum >= 0;
@@ -23,7 +16,6 @@ instance variables
 operations
 	public User: seq of char * seq of char * seq of char * seq of char * seq of char *seq of char * seq of char * int * int * real ==> User
 	User(fName, name, em, pw, count, phNum, cp, cpRegNum, v, initWallet) == (
-	
 		firstName := fName;
 		fullName := name;
 		email := em;
@@ -37,59 +29,30 @@ operations
 	);
 	--TODO
 	 --Add post conditions
-	 		 
-	public getFirstName: () ==> seq of char
-		getFirstName() == return firstName;
-	
-	public getFullName: () ==> seq of char
-		getFullName() == return fullName;
-	
-	public getEmail: () ==> seq of char
-		getEmail() == return email;
-	
-	public getPassword: () ==> seq of char
-		getPassword() == return password;
 	
 	public getCountry: () ==> seq of char
-		getCountry() == return country;
-	
-	public getPhoneNumber: () ==> seq of char 
-		getPhoneNumber() == return phoneNumber;
+	getCountry() == return country;
 		
 	public getCompany: () ==> seq of char 
-		getCompany() == return company;
+	getCompany() == return company;
 		
 	public getCompanyRegNum: () ==> nat
-		getCompanyRegNum() == return companyRegNum;
+	getCompanyRegNum() == return companyRegNum;
 		
 	public getVat: () ==> nat
-		getVat() == return vat; 
-		
-	pure public getWallet: () ==> real
-		getWallet() == return wallet;
-	
-	public getMessages: () ==> set of Message 
-	 getMessages() == return inbox;	
+	getVat() == return vat;
 	
 	public getFavorites: () ==> set of Accomodation 
-		getFavorites() == return favorites;
-	
-	public transaction: real ==> ()	
-	transaction(value) ==
-		wallet := wallet + value;
+	getFavorites() == return favorites;	
 	
 	public addFavorite: Accomodation ==> ()	
-	addFavorite(h) == (
-		favorites := favorites union {h};
-	)pre h not in set favorites;
+	addFavorite(h) == favorites := favorites union {h}
+	pre h not in set favorites;
 	
 	public removeFavorite: Accomodation ==> ()
-	removeFavorite(h) == (
-		favorites := favorites \ {h};
-	)
+	removeFavorite(h) == favorites := favorites \ {h}
 	pre h in set favorites;
 	
-	public addMessage: Message ==> ()
-	addMessage(message) ==
-		inbox := inbox union {message};
+	public getUserType: () ==> seq of char
+	getUserType() == return "User";
 end User

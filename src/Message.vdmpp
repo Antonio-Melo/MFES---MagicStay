@@ -1,13 +1,11 @@
 class Message
-types
-	public Person = User | Landlord;
 instance variables
-	sender: Person;
-	receiver: Person;
+	sender: Account;
+	receiver: Account;
 	content: seq of char;
 	inReplyTo: [Message];
 operations
-	public Message: Person * Person * seq of char * [Message] ==> Message 
+	public Message: Account * Account * seq of char * [Message] ==> Message 
 	Message(s, r, c, m) == (
 		sender := s;
 		receiver := r;

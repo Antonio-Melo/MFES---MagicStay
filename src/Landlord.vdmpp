@@ -1,14 +1,9 @@
-class Landlord
+class Landlord is subclass of Account
 types
 	public TypeOf = <Owner> | <RentalAgency> | <ApartHotel>;
 	public LanguageCommunication = <English> | <French> | <Spanish> | <German> | <Italian>;
 instance variables
-	firstName: seq of char;
-	fullName: seq of char;
 	gender: Types`Gender;
-	phoneNumber: seq of char;
-	email: seq of char;
-	password: seq of char;
 	language: LanguageCommunication;
 	address: seq of char;
 	city: seq of char;
@@ -16,9 +11,7 @@ instance variables
 	country: seq of char;
 	website: seq of char;
 	type: TypeOf;
-	wallet: real;
 	
-	inbox: set of Message := {};
 	houses: set of Accomodation := {};
 operations
 	public Landlord: seq of char * seq of char * Types`Gender * seq of char * seq of char * seq of char * LanguageCommunication * seq of char * seq of char * seq of char * seq of char * seq of char * TypeOf * real ==> Landlord
@@ -38,24 +31,9 @@ operations
 		type := typ;
 		wallet := initWallet;
 	);
-			 
-	public getFirstName: () ==> seq of char		 
-	getFirstName() == return firstName;
-	
-	public getFullName: () ==> seq of char
-	getFullName() == return fullName;
 	
 	public getGender: () ==> Types`Gender
 	getGender() == return gender;
-	
-	public getPhoneNumber: () ==> seq of char 	
-	getPhoneNumber() == return phoneNumber;
-	
-	public getEmail: () ==> seq of char
-	getEmail() == return email;
-	
-	public getPassword: () ==> seq of char
-	getPassword() == return password;
 	
 	public getLanguage: () ==> LanguageCommunication	
 	getLanguage() == return language;
@@ -80,19 +58,10 @@ operations
 	
 	pure public getHouses: () ==> set of Accomodation	
 	getHouses() == return houses;
-	
-	public getWallet: () ==> real	
-	getWallet() == return wallet;
-	
-	public getMessages: () ==> set of Message
-	getMessages() == return inbox;
-	
-	public transaction: real ==> ()
-	transaction(value) == wallet := wallet + value;
-	
+		
 	public addHouse: Accomodation ==> ()
 	addHouse(house) == houses := houses union {house};
 	
-	public addMessage: Message ==> ()
-	addMessage(message) == inbox := inbox union {message};
+	public getUserType: () ==> seq of char
+	getUserType() == return "Landlord";
 end Landlord
