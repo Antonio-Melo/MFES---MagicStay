@@ -27,7 +27,9 @@ instance variables
 	
 operations
 -- TODO Define operations here
-	public User(fName: seq of char, name: seq of char, em: seq of char, pw: seq of char, count: seq of char, phNum: seq of char, cp: seq of char, cpRegNum: int, v: int, initWallet: real) ret: User == (
+	public User: seq of char * seq of char * seq of char * seq of char * seq of char *seq of char * seq of char * int * int * real ==> User
+	User(fName, name, em, pw, count, phNum, cp, cpRegNum, v, initWallet) == (
+	
 		firstName := fName;
 		fullName := name;
 		email := em;
@@ -38,70 +40,63 @@ operations
 		companyRegNum := cpRegNum;
 		vat := v;
 		wallet := initWallet;
-	)
-	post ret.firstName = fName and
-			 ret.fullName = name and
-			 ret.email = em and
-			 ret.password = pw and
-			 ret.country = count and
-			 ret.phoneNumber = phNum and
-			 ret.company = cp and
-			 ret.companyRegNum = cpRegNum and
-			 ret.vat = v and
-			 ret.wallet = initWallet;
-			 
-	public getFirstName() ret: seq of char ==
-		return firstName;
-	
-	public getFullName() ret: seq of char ==
-		return fullName;
-	
-	public getEmail() ret: seq of char ==
-		return email;
-	
-	public getPassword() ret: seq of char ==
-		return password;
-	
-	public getCountry() ret: seq of char ==
-		return country;
-	
-	public getPhoneNumber() ret: seq of char == 
-		return phoneNumber;
-		
-	public getCompany() ret: seq of char == 
-		return company;
-		
-	public getCompanyRegNum() ret: nat ==
-		return companyRegNum;
-		
-	public getVat() ret: nat ==
-		return vat; 
-		
-	pure public getWallet() ret: real == (
-		return wallet; 
 	);
+	--TODO
+	 --Add post conditions
+	 		 
+	public getFirstName: () ==> seq of char
+		getFirstName() == return firstName;
 	
-	public getMessages() ret: set of Message ==
-		return inbox;	
+	public getFullName: () ==> seq of char
+		getFullName() == return fullName;
 	
-	public getFavorites() ret: set of Accomodation == (
-		return favorites;
-	);
+	public getEmail: () ==> seq of char
+		getEmail() == return email;
+	
+	public getPassword: () ==> seq of char
+		getPassword() == return password;
+	
+	public getCountry: () ==> seq of char
+		getCountry() == return country;
+	
+	public getPhoneNumber: () ==> seq of char 
+		getPhoneNumber() == return phoneNumber;
 		
-	public transaction(value: real) ==
+	public getCompany: () ==> seq of char 
+		getCompany() == return company;
+		
+	public getCompanyRegNum: () ==> nat
+		getCompanyRegNum() == return companyRegNum;
+		
+	public getVat: () ==> nat
+		getVat() == return vat; 
+		
+	pure public getWallet: () ==> real
+		getWallet() == return wallet;
+	
+	public getMessages: () ==> set of Message 
+	 getMessages() == return inbox;	
+	
+	public getFavorites: () ==> set of Accomodation 
+		getFavorites() == return favorites;
+	
+	public transaction: real ==> ()	
+	transaction(value) ==
 		wallet := wallet + value;
-		
-	public addFavorite(h: Accomodation) == (
-		favorites := favorites union {h}
-	)
-	pre h not in set favorites;
 	
-	public removeFavorite(h: Accomodation) == (
-		favorites := favorites \ {h}
+	public addFavorite: Accomodation ==> ()	
+	addFavorite(h) == (
+		favorites := favorites union {h};
+	)pre h not in set favorites;
+	
+	public removeFavorite: Accomodation ==> ()
+	removeFavorite(h) == (
+		favorites := favorites \ {h};
 	)
 	pre h in set favorites;
 	
-	public addMessage(message: Message) ==
+	public addMessage: Message ==> ()
+	addMessage(message) ==
 		inbox := inbox union {message};
 	
 functions
