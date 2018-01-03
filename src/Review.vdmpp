@@ -9,19 +9,18 @@ instance variables
 	review: seq of char;
 operations
 -- TODO Define operations here
-	public Review(u: User, r: seq of char) ret: Review== (
+	public Review: User * seq of char ==> Review
+	Review(u, r) == (
 		user := u;
 		review := r;
-	)post ret.user = u and
-	 			ret.review = r;
-	 			
-	 public getUser() ret: User == (
-	 	return user;
-	 )post ret = user;
-	 
-	 public getReview() ret: seq of char == (
-	 	return review;
-	 )post ret = review; 
+	);
+	--TODO
+		-- Add postconditions
+	public getUser: () ==> User			
+	getUser() == return user;
+	
+	public getReview: () ==> seq of char 
+	getReview() == return review; 
 functions
 -- TODO Define functiones here
 traces

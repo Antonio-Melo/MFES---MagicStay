@@ -7,10 +7,12 @@ instance variables
 -- TODO Define instance variables here
 operations
 -- TODO Define operations here
-	public createReview(user: User, review: seq of char) ret: Review ==
+	public createReview: User * seq of char ==> Review
+	createReview(user, review) ==
 		return new Review(user,review);
-		
-	public testCreateReview() == (
+	
+	public testCreateReview: () ==> ()	
+	testCreateReview() == (
 		dcl user: User := new User("Antonio","Antonio Melo", "antonio@gmail.com", "12345", "Portugal", "911111111", "Empresa", 123, 123, 50000);
 		dcl landlord: Landlord := new Landlord("Bruno","Bruno Santos",<Male>,"922222222", "bruno@gmail.com","1234",<English>, "Rua das Flores", "Porto","4400-458","Portugal", "www.casas.com", <Owner>, 0);
 		dcl accomodation : Accomodation := new Accomodation("Porto",2,4,2,1,landlord,<House>, 120);
@@ -21,7 +23,8 @@ operations
 		assert(review in set accomodation.getReviews()); 
 	);
 	
-	public test() == (
+	public test: () ==> ()
+	test() == (
 		testCreateReview();
 	);
 functions
