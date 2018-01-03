@@ -88,13 +88,21 @@ operations
 		dcl msg : Message := new Message(user,landlords(1),"Does it have car park?",nil);
 		dcl msg1 : Message := new Message(landlords(1), user, "Yes!!", msg);
 		assert(msg.getSender() = user);
-		--assert(msg1.getContent() = "Yes!!");	
+		assert(msg1.getContent() = "Yes!!");	
 	);
 	
 	public testReserve: () ==> ()
 	testReserve() == (
 		reservation := new Reservation(user,accReserve,mk_Types`DateTime(mk_Types`Date(2018,1,19), mk_Types`Time(14, 00, 00)),mk_Types`DateTime(mk_Types`Date(2018,1,30), mk_Types`Time(11, 00, 00)));
 		assert(reservation.getPrice() = 440);
+	);
+	
+	public testReviewReserve: () ==> ()
+	testReviewReserve() == (
+		dcl review: Review := new Review(user, accReserve, "Awesome",4);
+		assert(review.getUser() = user);
+		assert(review.getContent() = "Awesome");
+		assert(accReserve.getNumStars() = 4 );
 	);
 	
 	public test: () ==> ()
@@ -104,7 +112,8 @@ operations
 		testSignUpUser();
 		testSearchAccomodationsAndAddFavorites();
 		testMakeConversationWithLandlord();
-		--testReserve();
+		testReserve();
+		testReviewReserve();
 	);
 	
 functions

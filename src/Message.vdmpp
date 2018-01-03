@@ -13,7 +13,7 @@ operations
 		inReplyTo := m;
 		receiver.addMessage(self);
 	)
-	pre (m = nil) or (m.getSender() = receiver and m.getReceiver() = sender);
+	pre (m = nil) or (m.getSender() = r and m.getReceiver() = s);
 	
 	public getConversation: () ==> seq of Message
 	getConversation() == (
