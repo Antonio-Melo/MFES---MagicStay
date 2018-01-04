@@ -1,0 +1,27 @@
+class Review
+instance variables
+	user: User;
+	house: Accomodation;
+	content: seq of char;
+	rating: nat;
+	
+	inv rating >= 0 and rating <= 5; 
+operations
+	public Review: User * Accomodation * seq of char * nat ==> Review
+	Review(u, h, c, star) == (
+		user := u;
+		house := h;
+		content := c;
+		rating := star;
+		house.addReview(self);
+	);
+	
+	pure public getUser: () ==> User			
+	getUser() == return user;
+	
+	public getContent: () ==> seq of char 
+	getContent() == return content;
+	
+	public getRating: () ==> nat
+	getRating() == return rating;
+end Review

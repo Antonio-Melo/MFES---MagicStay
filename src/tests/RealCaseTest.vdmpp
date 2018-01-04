@@ -1,0 +1,123 @@
+class RealCaseTest is subclass of Test
+types
+-- TODO Define types here
+values
+-- TODO Define values here
+instance variables
+-- TODO Define instance variables here
+	user: User;
+	landlords: seq of Landlord := [];
+	accomodations: set of Accomodation := {};
+	results: set of Accomodation := {};
+	accReserve: Accomodation;
+	reservation: Reservation; 
+operations
+-- TODO Define operations here
+	
+	public testSignUpLandlords: () ==> ()
+	testSignUpLandlords() == (
+		dcl landlord : Landlord := new Landlord("Bruno","Bruno Santos",<Male>,"922222222", "bruno@gmail.com","1234",<English>, "Rua das Flores", "Porto","4400-458","Portugal", "www.casas.com", <Owner>, 0);
+		dcl landlord1 : Landlord := new Landlord("Lourenço","Lourenço Aires",<Male>,"933333333", "lourenço@gmail.com","gg",<Spanish>, "Jardim das Rodas", "Madrid","4400-478","Spain", "www.casasbonitas.com", <Owner>, 0);
+		assert(landlord.getFirstName() = "Bruno");
+		assert(landlord.getGender() = <Male>);
+		assert(landlord.getEmail() = "bruno@gmail.com");
+		assert(landlord.getLanguage() = <English>);
+		assert(landlord.getCity() = "Porto");
+		assert(landlord.getCountry() = "Portugal");
+		assert(landlord.getType() = <Owner>);
+		assert(landlord1.getFullName() = "Lourenço Aires");
+		assert(landlord1.getPhoneNumber() = "933333333");
+		assert(landlord1.getPassword() = "gg");
+		assert(landlord1.getAddress() = "Jardim das Rodas");
+		assert(landlord1.getPostalCode() = "4400-478");
+		assert(landlord1.getWebsite() = "www.casasbonitas.com");
+		assert(landlord1.getWallet() = 0);
+		landlords:= landlords^[landlord,landlord1];
+		assert(landlords(1) = landlord);
+	);
+	
+	public testCreateAccomodations: () ==> ()
+	testCreateAccomodations() == (
+	  dcl acc : Accomodation := new Accomodation("Porto",2,1,1,landlords(1),<Apartment>, 120);
+		dcl acc1 : Accomodation := new Accomodation("Lisboa",1,2,1,landlords(1),<ApartaHotel>, 70);
+		dcl acc2 : Accomodation := new Accomodation("Algarve",3,5,2,landlords(1),<House>, 320);
+		dcl acc3 : Accomodation := new Accomodation("Porto",4,6,3,landlords(1),<House>, 440);
+		dcl acc4 : Accomodation := new Accomodation("Madrid",2,2,1,landlords(2),<House>, 250);
+		dcl acc5 : Accomodation := new Accomodation("Barcelona",3,4,2,landlords(2),<House>, 350);
+		dcl acc6 : Accomodation := new Accomodation("Porto",4,6,3,landlords(2),<House>, 590);
+		dcl acc7 : Accomodation := new Accomodation("Madrid",2,2,2,landlords(2),<Hotel>, 275);
+		
+		assert(acc.getArea() = "Porto");
+		assert(acc1.getNumBedrooms() = 1);
+		assert(acc2.getNumBeds() = 5);
+		assert(acc3.getNumOfBathrooms() = 3);
+		assert(landlords(1).getFirstName() = "Bruno");
+		assert(acc4.getHost() = landlords(2));
+		assert(acc5.getType() = <House>);
+		assert(acc6.getPrice() = 590);
+		accomodations := accomodations union {acc,acc1,acc2,acc3,acc4,acc5,acc6,acc7};
+		results := results union {acc3,acc6};
+		accReserve := acc3;
+	);
+	
+	public testSignUpUser: () ==> ()
+	testSignUpUser() == (
+		user:= new User("António","António Teixeira de Melo", "antonio@gmail.com", "12345", "Portugal", "911111111", "Empresa", 123, 123, 50000);
+		assert(user.getFirstName() = "António");
+		assert(user.getFullName() = "António Teixeira de Melo");
+		assert(user.getEmail() = "antonio@gmail.com");
+		assert(user.getPassword() = "12345");
+		assert(user.getCountry() = "Portugal");
+		assert(user.getPhoneNumber() = "911111111");
+		assert(user.getCompany() = "Empresa");
+		assert(user.getCompanyRegNum() = 123);
+		assert(user.getVat() = 123);
+		assert(user.getWallet() = 50000);
+	);
+	
+	public testSearchAccomodationsAndAddFavorites: () ==> ()
+	testSearchAccomodationsAndAddFavorites() == (
+		dcl search : Search := new Search("Porto",mk_Types`Date(2018,1,19),mk_Types`Date(2018,1,30),<House>,4,0,6,3,500,1000);
+		assert(search.searchResults(accomodations) subset results);
+		user.addFavorites(results);
+		assert(user.getFavorites() = results); 
+	);
+	
+	public testMakeConversationWithLandlord: () ==> ()
+	testMakeConversationWithLandlord() == (
+		dcl msg : Message := new Message(user,landlords(1),"Does it have car park?",nil);
+		dcl msg1 : Message := new Message(landlords(1), user, "Yes!!", msg);
+		assert(msg.getSender() = user);
+		assert(msg1.getContent() = "Yes!!");	
+	);
+	
+	public testReserve: () ==> ()
+	testReserve() == (
+		reservation := new Reservation(user,accReserve,mk_Types`DateTime(mk_Types`Date(2018,1,19), mk_Types`Time(14, 00, 00)),mk_Types`DateTime(mk_Types`Date(2018,1,30), mk_Types`Time(11, 00, 00)));
+		assert(reservation.getPrice() = 440);
+	);
+	
+	public testReviewReserve: () ==> ()
+	testReviewReserve() == (
+		dcl review: Review := new Review(user, accReserve, "Awesome",4);
+		assert(review.getUser() = user);
+		assert(review.getContent() = "Awesome");
+		assert(accReserve.getNumStars() = 4 );
+	);
+	
+	public test: () ==> ()
+	test() == (
+		testSignUpLandlords();
+		testCreateAccomodations();
+		testSignUpUser();
+		testSearchAccomodationsAndAddFavorites();
+		testMakeConversationWithLandlord();
+		testReserve();
+		testReviewReserve();
+	);
+	
+functions
+-- TODO Define functiones here
+traces
+-- TODO Define Combinatorial Test Traces here
+end RealCaseTest

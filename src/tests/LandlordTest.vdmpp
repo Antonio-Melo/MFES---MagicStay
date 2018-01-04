@@ -1,0 +1,29 @@
+class LandlordTest is subclass of Test
+operations
+	public createLandlord: () ==> Landlord
+	createLandlord() ==
+		return new Landlord("Bruno","Bruno Santos",<Male>,"922222222", "bruno@gmail.com","1234",<English>, "Rua das Flores", "Porto","4400-458","Portugal", "www.casas.com", <Owner>, 0); 
+	
+	public testCreateLandlord: () ==> ()
+	testCreateLandlord() == (
+		dcl l : Landlord := createLandlord();
+		assert(l.getFirstName() = "Bruno");
+		assert(l.getFullName() = "Bruno Santos");
+		assert(l.getGender() = <Male>);
+		assert(l.getPhoneNumber() = "922222222");
+		assert(l.getEmail() = "bruno@gmail.com");
+		assert(l.getPassword() = "1234");
+		assert(l.getLanguage() = <English>);
+		assert(l.getAddress() = "Rua das Flores");
+		assert(l.getCity() = "Porto");
+		assert(l.getPostalCode() = "4400-458");
+		assert(l.getCountry() = "Portugal");
+		assert(l.getWebsite() = "www.casas.com");
+		assert(l.getType() = <Owner>);
+	);
+	
+	public test: () ==> ()
+	test() == (
+		testCreateLandlord();
+	);
+end LandlordTest

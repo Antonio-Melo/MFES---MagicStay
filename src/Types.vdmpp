@@ -1,0 +1,30 @@
+class Types
+types
+	public Gender = <Male> | <Female>;
+	public Date :: year : int
+								 month : int
+								 day : int
+				 inv date == date.year >=0 and date.month >0 and date.month <=12 and date.day >0 and date.day <=31;
+	public Time :: hour : int
+								 minute : int
+								 second : int
+				 inv time == time.hour >= 0 and time.hour < 24 and
+				 		 				 time.minute >=0 and time.minute < 60 and
+				 		 				 time.second >=0 and time.second <60;
+	public DateTime :: date : Date
+										 time : Time;
+operations
+	-- Returns -1 if d1 is after d2, 1 if d2 is after d1, or 0 if same date
+	pure public static compare: Date * Date ==> int
+	compare(d1,d2) == (
+		if d1.year > d2.year then return -1
+		else if d1.year < d2.year then return 1
+		else
+			if d1.month > d2.month then return -1
+			else if d1.month < d2.month then return 1
+			else
+				if d1.day > d2.day then return -1
+				else if d1.day < d2.day then return 1
+				else return 0;
+	)
+end Types

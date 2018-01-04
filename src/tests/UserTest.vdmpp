@@ -1,0 +1,45 @@
+class UserTest is subclass of Test
+operations
+	public createUser: () ==>  User
+	createUser() == return new User("Antonio","Antonio Melo", "antonio@gmail.com", "12345", "Portugal", "911111111", "Empresa", 123, 123, 50000);
+		
+	public createLandlord: () ==> Landlord
+	createLandlord() == return new Landlord("Bruno","Bruno Santos",<Male>,"922222222", "bruno@gmail.com","1234",<English>, "Rua das Flores", "Porto","4400-458","Portugal", "www.casas.com", <Owner>, 0);
+	
+	public testCreateUser: () ==> ()
+	testCreateUser() == (
+		dcl u: User := createUser();
+		assert(u.getFirstName() = "Antonio");
+		assert(u.getFullName() = "Antonio Melo");
+		assert(u.getEmail() = "antonio@gmail.com");
+		assert(u.getPassword() = "12345");
+		assert(u.getCountry() = "Portugal");
+		assert(u.getPhoneNumber() = "911111111");
+		assert(u.getCompany() = "Empresa");
+		assert(u.getCompanyRegNum() = 123);
+		assert(u.getVat() = 123);
+	);
+	
+	public testFavorites: () ==> ()
+	testFavorites() == (
+		dcl landlord: Landlord := createLandlord();
+		dcl u1: User := createUser();
+		dcl h1: Accomodation := new Accomodation("Porto",4,2,1,landlord,<House>, 120);
+		dcl h2: Accomodation := new Accomodation("Porto",4,2,1,landlord,<House>, 80);
+		dcl h3: Accomodation := new Accomodation("Porto",4,2,1,landlord,<House>, 90);
+		u1.addFavorite(h1);
+		u1.addFavorite(h2);
+		assert(h2 in set u1.getFavorites());
+		u1.addFavorite(h3);
+		u1.removeFavorite(h2);
+		assert(h1 in set u1.getFavorites());
+		assert(h2 not in set u1.getFavorites());
+		assert(h3 in set u1.getFavorites());
+	);
+	
+	public test: () ==> ()
+	test() == (
+		testCreateUser();
+		testFavorites();
+	);
+end UserTest

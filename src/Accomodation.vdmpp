@@ -1,0 +1,114 @@
+class Accomodation
+types
+	public TypeOf = <House> | <Apartment> | <ApartaHotel> | <Hotel>;
+instance variables
+	area: seq of char;
+	numBedrooms: nat;
+	numBeds: nat;
+	numStars: nat;
+	numOfBathrooms: nat;
+	host: Landlord;
+	type: TypeOf;
+	price: real;
+	
+	reservations: set of Reservation := {};
+	reviews: map User to Review := {|->};
+operations
+	public Accomodation: seq of char * nat * nat * nat * Landlord * TypeOf * real ==> Accomodation
+	Accomodation(a, nBedrooms, nBeds, nBathrooms, user, typeOf, p) == (
+		area := a;
+		numBedrooms := nBedrooms;
+		numBeds := nBeds;
+		numStars := 0;
+		numOfBathrooms := nBathrooms;
+		host := user;
+		type := typeOf;
+		price := p;
+		host.addHouse(self);
+	);
+	
+	public getArea: () ==> seq of char
+	getArea() == return area;
+	
+	public getNumBedrooms: () ==> nat 	
+	getNumBedrooms() == return numBedrooms;
+	
+	public getNumStars: () ==> nat	
+	getNumStars() == return numStars;
+	
+	public getNumBeds: () ==> nat	
+	getNumBeds()== return numBeds;
+	
+	public getNumOfBathrooms: () ==> nat
+	getNumOfBathrooms() == return numOfBathrooms;
+	
+	public getHost: () ==> Landlord
+	getHost() == return host;
+	
+	public getType: () ==> TypeOf
+	getType() == return type;
+	
+	public getPrice: () ==> real
+	getPrice() == return price;
+	
+	pure public getReservations: () ==> set of Reservation	
+	getReservations() == return reservations;
+	
+	private updateNumStars: () ==> ()
+	updateNumStars() == (
+		dcl sum: nat := 0;
+		dcl n: nat := card dom reviews;
+		
+		for all r in set rng reviews do (
+			sum := sum + r.getRating()
+		);
+		if n = 0 then n := 1;
+		numStars := sum / n;
+	);
+	
+	public addReview: Review ==> ()
+	addReview(rev) == (
+		reviews := reviews ++ {rev.getUser() |-> rev};
+		updateNumStars()
+	)
+	pre rev.getUser() not in set dom reviews
+	post rev in set rng reviews;
+	
+	public removeReview: Review ==> ()
+	removeReview(rev) == (
+		reviews := {rev.getUser()} <-: reviews;
+		updateNumStars()
+	)
+	pre rev in set rng reviews
+	post (rev not in set rng reviews) and (rev.getUser() not in set dom reviews);
+	
+	public getReviews: () ==> map User to Review
+	getReviews() == return reviews;
+	
+	public addReservation: Reservation ==> ()
+	addReservation(res) == (
+		res.setPrice(price);
+		res.getUser().transaction(-price);
+		host.transaction(price);
+		reservations := reservations union {res};
+	)
+	pre res.getUser().getWallet() > price and card {reservation | reservation in set reservations & overlaps(res, reservation)} = 0
+	post res in set reservations;
+	
+	public cancelReservation: Reservation ==> ()
+	cancelReservation(res) == (
+		dcl p: real := res.getPrice();
+		res.getUser().transaction(p);
+		host.transaction(-p);
+		reservations := reservations \ {res};	
+	)
+	pre res in set reservations;
+
+	pure private overlaps: Reservation * Reservation ==> bool
+	overlaps(res1, res2) == (
+		if Types`compare(res1.getCheckIn().date, res2.getCheckOut().date) <= 0 or Types`compare(res2.getCheckIn().date, res1.getCheckOut().date) <= 0 then (
+			return false)
+		else
+			return true;
+	);
+end Accomodation

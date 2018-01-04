@@ -1,0 +1,85 @@
+class Search
+instance variables
+	area: seq of char;
+	checkIn: Types`Date;
+	checkOut: Types`Date;
+	typeOfAccomodation: Accomodation`TypeOf;
+	numBedrooms: nat;
+	numOfStars: nat;
+	numOfBeds: nat;
+	numOfBathrooms: nat;
+	lowRangePrice: real;
+	highRangePrice: real;
+	
+	results: set of Accomodation := {};
+	
+	--Inv
+	inv numOfStars >= 0 and numOfStars <= 5;
+	inv numOfBathrooms > 0 and numOfBathrooms <6;
+	inv lowRangePrice > 0;
+	inv highRangePrice > 0 and highRangePrice > lowRangePrice;
+	
+operations
+	public Search: seq of char * Types`Date * Types`Date * Accomodation`TypeOf * nat * nat * nat * nat * real * real ==> Search
+	Search(a, cIn, cOut, typeOfAcco, nBedrooms, nOfStars,nOfBeds,nOfBathrooms,lowPrice,highPrice) == (
+		area := a;
+		checkIn := cIn;
+		checkOut := cOut;
+		numBedrooms:= nBedrooms;
+		typeOfAccomodation := typeOfAcco;
+		numOfStars := nOfStars;
+		numOfBeds := nOfBeds;
+		numOfBathrooms := nOfBathrooms;
+		lowRangePrice := lowPrice;
+		highRangePrice := highPrice;
+	);
+	--TODO
+		--Adicionar post conditions
+	public searchResults: set of Accomodation ==> set of Accomodation		 
+	searchResults(accomodations) == (
+		results := {};
+		for all a in set accomodations do (
+			if a.getArea() = area and
+			 	 a.getNumBedrooms() = numBedrooms and
+			 	 a.getType() = typeOfAccomodation and
+			 	 a.getNumStars() = numOfStars and
+			 	 a.getNumBeds() = numOfBeds and
+			 	 a.getNumOfBathrooms() = numOfBathrooms and
+			 	 a.getPrice() >= lowRangePrice and
+			 	 a.getPrice() <= highRangePrice then (
+			 	 	results := results union {a};
+			 	 );
+		);
+		return results;
+	);
+	
+	public getArea: () ==> seq of char		 
+	getArea() == return area;
+	
+	public getCheckIn: () ==> Types`Date
+	getCheckIn() == return checkIn;
+	
+	public getCheckOut: () ==> Types`Date
+	getCheckOut() == return checkOut;
+	
+	public getNumBedrooms: () ==> nat
+	getNumBedrooms() == return numBedrooms;
+	
+	public getTypeOfAccomodation: () ==> Accomodation`TypeOf
+	getTypeOfAccomodation() == return typeOfAccomodation;
+	
+	public getNumOfStars: () ==> nat
+	getNumOfStars() ==	return numOfStars;
+	
+	public getNumOfBeds: () ==> nat
+	getNumOfBeds() == return numOfBeds;
+	
+	public getNumOfBathrooms: () ==> nat
+	getNumOfBathrooms() == return numOfBathrooms;
+	
+	public getLowRangePrice: () ==> real
+	getLowRangePrice() == return lowRangePrice;
+	
+	public getHighRangePrice: () ==> real
+	getHighRangePrice() == return highRangePrice;
+end Search

@@ -1,0 +1,67 @@
+class Landlord is subclass of Account
+types
+	public TypeOf = <Owner> | <RentalAgency> | <ApartHotel>;
+	public LanguageCommunication = <English> | <French> | <Spanish> | <German> | <Italian>;
+instance variables
+	gender: Types`Gender;
+	language: LanguageCommunication;
+	address: seq of char;
+	city: seq of char;
+	postalCode: seq of char;
+	country: seq of char;
+	website: seq of char;
+	type: TypeOf;
+	
+	houses: set of Accomodation := {};
+operations
+	public Landlord: seq of char * seq of char * Types`Gender * seq of char * seq of char * seq of char * LanguageCommunication * seq of char * seq of char * seq of char * seq of char * seq of char * TypeOf * real ==> Landlord
+	Landlord(fName, name, gend, phoneNum, em, pw, lang, adr, ct, pc, ctr, web, typ, initWallet) == (
+		firstName := fName;
+		fullName := name;
+		gender := gend;
+		phoneNumber := phoneNum;
+		email := em;
+		password := pw;
+		language := lang;
+		address := adr;
+		city := ct;
+		postalCode := pc;
+		country := ctr;
+		website := web;
+		type := typ;
+		wallet := initWallet;
+	);
+	
+	public getGender: () ==> Types`Gender
+	getGender() == return gender;
+	
+	public getLanguage: () ==> LanguageCommunication	
+	getLanguage() == return language;
+	
+	public getAddress: () ==> seq of char
+	getAddress() == return address;
+	
+	public getCity: () ==> seq of char	
+	getCity() == return city;
+	
+	public getPostalCode: () ==> seq of char	
+	getPostalCode() == return postalCode;
+	
+	public getCountry: () ==> seq of char	
+	getCountry() == return country;
+	
+	public getWebsite: () ==> seq of char
+	getWebsite() == return website;
+	
+	public getType: () ==> TypeOf	
+	getType() == return type;
+	
+	pure public getHouses: () ==> set of Accomodation	
+	getHouses() == return houses;
+		
+	public addHouse: Accomodation ==> ()
+	addHouse(house) == houses := houses union {house};
+	
+	public getUserType: () ==> seq of char
+	getUserType() == return "Landlord";
+end Landlord

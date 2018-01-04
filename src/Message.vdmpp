@@ -1,0 +1,35 @@
+class Message
+instance variables
+	sender: Account;
+	receiver: Account;
+	content: seq of char;
+	inReplyTo: [Message];
+operations
+	public Message: Account * Account * seq of char * [Message] ==> Message 
+	Message(s, r, c, m) == (
+		sender := s;
+		receiver := r;
+		content := c;
+		inReplyTo := m;
+		receiver.addMessage(self);
+	)
+	pre (m = nil) or (m.getSender() = r and m.getReceiver() = s);
+	
+	public getConversation: () ==> seq of Message
+	getConversation() == (
+		if inReplyTo <> nil then
+			return inReplyTo.getConversation()^[self]
+		else
+			return [self];
+	);
+	
+	pure public getSender: () ==> Account
+	getSender() == return sender;
+	
+	pure public getReceiver: () ==> Account
+	getReceiver() == return receiver;
+	
+	public getContent: () ==> seq of char
+	getContent() == return content;
+	
+end Message

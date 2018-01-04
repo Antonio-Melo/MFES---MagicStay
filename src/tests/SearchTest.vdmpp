@@ -1,0 +1,36 @@
+class SearchTest is subclass of Test
+operations
+	public createSearch: seq of char * Types`Date * Types`Date * Accomodation`TypeOf * nat  * nat * nat * nat * real * real ==> Search
+	createSearch(a, cIn, cOut, typeOfAcco, nBedrooms, nOfStars,nOfBeds,nOfBathrooms,lowPrice,highPrice) ==
+		 return new Search(a, cIn, cOut, typeOfAcco, nBedrooms , nOfStars,nOfBeds,nOfBathrooms,lowPrice,highPrice);
+	public testCreateSearch: () ==> ()	 
+	testCreateSearch() == (
+		dcl s : Search := createSearch("Porto",mk_Types`Date(2018,1,19),mk_Types`Date(2018,1,30),<House>,1,4,2,1,500,1000);
+		assert(s.getArea() = "Porto");
+		assert(s.getCheckIn() = mk_Types`Date(2018,1,19));
+		assert(s.getCheckOut() = mk_Types`Date(2018,1,30));
+		assert(s.getNumBedrooms() = 1);
+		assert(s.getTypeOfAccomodation() = <House>);
+		assert(s.getNumOfStars() = 4);
+		assert(s.getNumOfBeds() = 2);
+		assert(s.getNumOfBathrooms() = 1);
+		assert(s.getLowRangePrice() = 500);
+		assert(s.getHighRangePrice() = 1000);
+	);
+	
+	public testSearchResults: () ==> ()
+	testSearchResults() == (
+		dcl s : Search := createSearch("Porto",mk_Types`Date(2018,1,19),mk_Types`Date(2018,1,30),<House>,1,0,2,1,500,1000);
+		dcl l: Landlord := new Landlord("Bruno","Bruno Santos",<Male>,"922222222", "bruno@gmail.com","1234",<English>, "Rua das Flores", "Porto","4400-458","Portugal", "www.casas.com", <Owner>, 0);
+		dcl ac : Accomodation := new Accomodation("Porto",1,2,1,l,<House>, 600);
+		dcl al : Accomodation := new Accomodation("Porto",1,2,1,l,<House>, 120);
+		dcl a: set of Accomodation := s.searchResults({ac,al});
+		assert( a = {ac});
+	);
+	
+	public test: () ==> ()
+	test() == (
+		testCreateSearch();
+		testSearchResults();
+	);
+end SearchTest

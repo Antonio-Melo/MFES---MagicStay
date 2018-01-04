@@ -1,0 +1,41 @@
+class Account
+instance variables
+	protected firstName: seq of char;
+	protected fullName: seq of char;
+	protected email: seq of char;
+	protected password: seq of char;
+	protected phoneNumber: seq of char;
+	
+	protected wallet: real;
+	protected inbox: set of Message := {};
+operations
+	public getFirstName: () ==> seq of char
+	getFirstName() == return firstName;
+	
+	public getFullName: () ==> seq of char
+	getFullName() == return fullName;
+	
+	public getEmail: () ==> seq of char
+	getEmail() == return email;
+	
+	public getPassword: () ==> seq of char
+	getPassword() == return password;
+
+	public getPhoneNumber: () ==> seq of char 
+	getPhoneNumber() == return phoneNumber;
+		
+	pure public getWallet: () ==> real
+	getWallet() == return wallet;
+	
+	public getMessages: () ==> set of Message 
+	getMessages() == return inbox;	
+		
+	public transaction: real ==> ()	
+	transaction(value) == wallet := wallet + value;
+		
+	public addMessage: Message ==> ()
+	addMessage(message) == inbox := inbox union {message};
+		
+	public getUserType: () ==> seq of char
+	getUserType() == is subclass responsibility;
+end Account
